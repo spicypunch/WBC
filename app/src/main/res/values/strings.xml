@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">버스 언제옴</string>
+    <string name="tab_text_1">지도</string>
+    <string name="tab_text_2">즐겨찾기</string>
+</resources>
