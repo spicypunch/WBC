@@ -18,6 +18,8 @@
         android:theme="@style/Theme.WBC"
         tools:targetApi="31">
         <activity
+            android:name=".ui.map.MapActivity" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

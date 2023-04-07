@@ -1,14 +1,10 @@
 package com.example.wbc
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2
 import com.example.wbc.databinding.ActivityMainBinding
-import com.example.wbc.ui.bookmark.FragmentBookmark
-import com.example.wbc.ui.map.FragmentMap
+import com.example.wbc.ui.bookmark.BookmarkFragment
+import com.example.wbc.ui.search.SearchFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val tabTitleArray = arrayOf(
-        "지도",
+        "정류장 검색",
         "즐겨찾기"
     )
 
@@ -30,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewPagerAdapter.addFragment(FragmentMap())
-        viewPagerAdapter.addFragment(FragmentBookmark())
+        viewPagerAdapter.addFragment(SearchFragment())
+        viewPagerAdapter.addFragment(BookmarkFragment())
 
         binding.viewPager.adapter = viewPagerAdapter
 

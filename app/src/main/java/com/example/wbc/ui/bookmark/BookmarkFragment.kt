@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.wbc.databinding.FragmentBookmarkBinding
 
-class FragmentBookmark() : Fragment() {
+class BookmarkFragment() : Fragment() {
 
     private lateinit var binding: FragmentBookmarkBinding
 
