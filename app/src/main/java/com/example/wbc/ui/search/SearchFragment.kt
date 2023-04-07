@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.wbc.databinding.FragmentSearchBinding
-import com.example.wbc.ui.map.ActivityMap
+import com.example.wbc.ui.map.MapActivity
 
-class FragmentSearch() : Fragment() {
+class SearchFragment() : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
 
@@ -21,7 +21,7 @@ class FragmentSearch() : Fragment() {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
         binding.fabMap.setOnClickListener {
-            Intent(context, ActivityMap::class.java).run {
+            Intent(context, MapActivity::class.java).run {
                 startActivity(this)
             }
         }
