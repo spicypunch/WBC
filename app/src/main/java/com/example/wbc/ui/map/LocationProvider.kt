@@ -6,7 +6,7 @@ import android.location.Location
 import android.location.LocationManager
 import androidx.core.content.ContextCompat
 
-class LocationProvider(val context: Context) {
+class LocationProvider(private val context: Context) {
     //Location는 위도, 경도, 고도와 같이 위치에 관련된 정보를 가지고 있는 클래스
     private var location: Location? = null
 
