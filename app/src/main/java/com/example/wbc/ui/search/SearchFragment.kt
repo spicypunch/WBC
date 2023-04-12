@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.wbc.databinding.FragmentSearchBinding
 import com.example.wbc.ui.map.MapActivity
 
 class SearchFragment() : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
+
+    private val searchViewModel: SearchViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
