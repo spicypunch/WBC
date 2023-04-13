@@ -9,7 +9,7 @@ import com.example.wbc.entity.SearchHistoryEntity
 @Database(entities = [SearchHistoryEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun getDao(): SearchHistoryDao
+    abstract fun searchHistoryDao(): SearchHistoryDao
 
     companion object {
         private const val DATABASE = "db_history"

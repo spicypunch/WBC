@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wbc.databinding.FragmentSearchBinding
 import com.example.wbc.ui.map.MapActivity
 
 class SearchFragment() : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
+
+    private val adapter by lazy { SearchHistoryAdapter() }
 
     private val searchViewModel: SearchViewModel by viewModels()
 
@@ -23,6 +26,9 @@ class SearchFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
+
+        binding.recyclerviewHome.adapter = adapter
+        binding.recyclerviewHome.layoutManager = LinearLayoutManager(activity)
 
         binding.fabMap.setOnClickListener {
             Intent(context, MapActivity::class.java).run {
@@ -39,11 +45,7 @@ class SearchFragment() : Fragment() {
                     startActivity(this)
                 }
             }
-
         }
-
         return binding.root
     }
-
-
 }
