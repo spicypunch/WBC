@@ -1,6 +1,6 @@
 package com.example.wbc.repository
 
-import com.example.wbc.di.IoDispatcher
+import com.example.wbc.di.coroutine.IoDispatcher
 import com.example.wbc.entity.SearchHistoryEntity
 import com.example.wbc.room.SearchHistoryDao
 import kotlinx.coroutines.CoroutineDispatcher

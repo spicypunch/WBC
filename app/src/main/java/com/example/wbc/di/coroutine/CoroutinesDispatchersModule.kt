@@ -1,4 +1,4 @@
-package com.example.wbc.di
+package com.example.wbc.di.coroutine
 
 import dagger.Module
 import dagger.Provides
