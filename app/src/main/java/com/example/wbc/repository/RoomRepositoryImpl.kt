@@ -5,6 +5,7 @@ import com.example.wbc.entity.SearchHistoryEntity
 import com.example.wbc.room.SearchHistoryDao
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RoomRepositoryImpl @Inject constructor(
@@ -13,11 +14,11 @@ class RoomRepositoryImpl @Inject constructor(
 ): RoomRepository {
     override fun getAllHistory(): Flow<List<SearchHistoryEntity>> = searchHistoryDao.getAllItem()
 
-    override suspend fun insertHistory(searchHistoryEntity: SearchHistoryEntity) {
+    override suspend fun insertHistory(searchHistoryEntity: SearchHistoryEntity) = withContext(ioDispatcher) {
         searchHistoryDao.insertItem(searchHistoryEntity)
     }
 
-    override suspend fun deleteHistory(searchHistoryEntity: SearchHistoryEntity) {
+    override suspend fun deleteHistory(searchHistoryEntity: SearchHistoryEntity) = withContext(ioDispatcher) {
         searchHistoryDao.deleteItem(searchHistoryEntity)
     }
 }

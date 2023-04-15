@@ -6,7 +6,9 @@ import com.example.wbc.databinding.ActivityMainBinding
 import com.example.wbc.ui.bookmark.BookmarkFragment
 import com.example.wbc.ui.search.SearchFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

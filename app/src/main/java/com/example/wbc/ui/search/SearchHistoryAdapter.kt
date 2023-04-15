@@ -1,5 +1,7 @@
 package com.example.wbc.ui.search
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,31 +9,39 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wbc.databinding.ItemHistoryBinding
 import com.example.wbc.entity.SearchHistoryEntity
+import net.daum.android.map.MapActivity
 
-class SearchHistoryAdapter() : ListAdapter<SearchHistoryEntity, SearchHistoryAdapter.ViewHolder>(diffUtil) {
+class SearchHistoryAdapter() : ListAdapter<SearchHistoryEntity, SearchHistoryAdapter.MyViewHolder>(diffUtil) {
 
-    class ViewHolder(private val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
         val root = binding.root
-
         fun bind(item: SearchHistoryEntity) {
+            Log.e("item", item.toString())
             binding.data = item
 
             itemView.setOnClickListener {
+                Intent(root.context, com.example.wbc.ui.map.MapActivity::class.java).apply {
+                    putExtra("address", item.history)
+                }.run { root.context.startActivity(this) }
+            }
+
+            binding.imageCancel.setOnClickListener {
 
             }
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ItemHistoryBinding = ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val binding: ItemHistoryBinding =
+            ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(currentList[position])
     }
+
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<SearchHistoryEntity>() {
-
             override fun areItemsTheSame(oldItem: SearchHistoryEntity, newItem: SearchHistoryEntity): Boolean {
                 return oldItem.id == newItem.id
             }
@@ -39,6 +49,7 @@ class SearchHistoryAdapter() : ListAdapter<SearchHistoryEntity, SearchHistoryAda
             override fun areContentsTheSame(oldItem: SearchHistoryEntity, newItem: SearchHistoryEntity): Boolean {
                 return oldItem == newItem
             }
+
         }
     }
 }

@@ -30,5 +30,4 @@ object RoomModule {
     fun provideSearchHistoryDao(database: AppDatabase): SearchHistoryDao {
         return database.searchHistoryDao()
     }
-
 }
