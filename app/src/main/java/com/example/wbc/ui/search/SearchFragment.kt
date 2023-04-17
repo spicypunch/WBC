@@ -17,11 +17,11 @@ import com.example.wbc.ui.map.MapActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment() : Fragment() {
+class SearchFragment() : Fragment(), ItemClickListener {
 
     private lateinit var binding: FragmentSearchBinding
 
-    private val adapter by lazy { SearchHistoryAdapter() }
+    private val adapter by lazy { SearchHistoryAdapter(this) }
 
     private val searchViewModel: SearchViewModel by viewModels()
 
@@ -55,11 +55,18 @@ class SearchFragment() : Fragment() {
         }
 
         searchViewModel.items.observe(viewLifecycleOwner, Observer {
-            Log.e("it", it.toString())
             adapter.submitList(it)
         })
 
+        searchViewModel.toastMessage.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        })
+
         return binding.root
+    }
+
+    override fun onClick(item: SearchHistoryEntity) {
+        searchViewModel.deleteHistory(item)
     }
 
 //    override fun onDestroyView() {

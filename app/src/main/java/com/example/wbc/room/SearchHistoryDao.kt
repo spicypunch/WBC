@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface SearchHistoryDao {
 
-    @Query("SELECT * FROM SearchHistoryEntity")
+    @Query("SELECT * FROM SearchHistoryEntity ORDER BY id DESC")
     fun getAllItem(): Flow<List<SearchHistoryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

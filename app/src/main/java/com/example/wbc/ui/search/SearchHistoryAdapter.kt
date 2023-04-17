@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wbc.databinding.ItemHistoryBinding
 import com.example.wbc.entity.SearchHistoryEntity
-import net.daum.android.map.MapActivity
 
-class SearchHistoryAdapter() : ListAdapter<SearchHistoryEntity, SearchHistoryAdapter.MyViewHolder>(diffUtil) {
+class SearchHistoryAdapter(private val listener: ItemClickListener) : ListAdapter<SearchHistoryEntity, SearchHistoryAdapter.MyViewHolder>(diffUtil) {
 
-    class MyViewHolder(private val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemHistoryBinding, private val listener: ItemClickListener) : RecyclerView.ViewHolder(binding.root) {
         val root = binding.root
         fun bind(item: SearchHistoryEntity) {
-            Log.e("item", item.toString())
             binding.data = item
 
             itemView.setOnClickListener {
@@ -26,14 +24,14 @@ class SearchHistoryAdapter() : ListAdapter<SearchHistoryEntity, SearchHistoryAda
             }
 
             binding.imageCancel.setOnClickListener {
-
+                listener.onClick(item)
             }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding: ItemHistoryBinding =
             ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        return MyViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -41,7 +39,9 @@ class SearchHistoryAdapter() : ListAdapter<SearchHistoryEntity, SearchHistoryAda
     }
 
     companion object {
+
         val diffUtil = object : DiffUtil.ItemCallback<SearchHistoryEntity>() {
+
             override fun areItemsTheSame(oldItem: SearchHistoryEntity, newItem: SearchHistoryEntity): Boolean {
                 return oldItem.id == newItem.id
             }
@@ -49,7 +49,6 @@ class SearchHistoryAdapter() : ListAdapter<SearchHistoryEntity, SearchHistoryAda
             override fun areContentsTheSame(oldItem: SearchHistoryEntity, newItem: SearchHistoryEntity): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 }

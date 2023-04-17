@@ -19,8 +19,12 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _items = MutableLiveData<List<SearchHistoryEntity>>(listOf())
-    val items: MutableLiveData<List<SearchHistoryEntity>>
+    val items: LiveData<List<SearchHistoryEntity>>
         get() = _items
+
+    private val _toastMessage = MutableLiveData<String>()
+    val toastMessage: LiveData<String>
+        get() = _toastMessage
 
     fun getHistory() {
         viewModelScope.launch {
@@ -36,8 +40,11 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun deleteHistory() {
-
+    fun deleteHistory(item: SearchHistoryEntity) {
+        viewModelScope.launch {
+            roomRepository.deleteHistory(item)
+        }
+        _toastMessage.value = "검색 기록이 삭제되었습니다."
     }
 
 

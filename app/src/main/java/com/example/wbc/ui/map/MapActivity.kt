@@ -10,16 +10,20 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wbc.databinding.ActivityMapBinding
+import com.example.wbc.ui.search.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import java.util.*
 
+@AndroidEntryPoint
 class MapActivity() : AppCompatActivity() {
 
     private lateinit var binding: ActivityMapBinding
 
     private val mapViewModel: MapViewModel by viewModels()
+    private val searchViewModel: SearchViewModel by viewModels()
 
     private val mapView by lazy {
         MapView(this)
@@ -68,6 +72,8 @@ class MapActivity() : AppCompatActivity() {
             } else {
                 val location = searchLocation(binding.editSearch.text.toString())
                 setMarker(location.latitude, location.longitude, binding.editSearch.text.toString())
+                // 검색 기록 추가
+                searchViewModel.insertHistory(binding.editSearch.text.toString())
             }
         }
     }
