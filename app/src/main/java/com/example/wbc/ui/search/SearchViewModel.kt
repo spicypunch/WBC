@@ -1,15 +1,12 @@
 package com.example.wbc.ui.search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.wbc.entity.SearchHistoryEntity
+import com.example.wbc.data.SearchHistoryEntity
 import com.example.wbc.repository.RoomRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,11 +15,11 @@ class SearchViewModel @Inject constructor(
     private val roomRepository: RoomRepositoryImpl
 ) : ViewModel() {
 
-    private val _items = MutableLiveData<List<SearchHistoryEntity>>(listOf())
+    private var _items = MutableLiveData<List<SearchHistoryEntity>>(listOf())
     val items: LiveData<List<SearchHistoryEntity>>
         get() = _items
 
-    private val _toastMessage = MutableLiveData<String>()
+    private var _toastMessage = MutableLiveData<String>()
     val toastMessage: LiveData<String>
         get() = _toastMessage
 

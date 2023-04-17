@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wbc.databinding.ItemHistoryBinding
-import com.example.wbc.entity.SearchHistoryEntity
+import com.example.wbc.data.SearchHistoryEntity
 
 class SearchHistoryAdapter(private val listener: ItemClickListener) : ListAdapter<SearchHistoryEntity, SearchHistoryAdapter.MyViewHolder>(diffUtil) {
 
