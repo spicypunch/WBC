@@ -26,13 +26,15 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MapActivity @Inject constructor(
-    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
-) : AppCompatActivity() {
+class MapActivity () : AppCompatActivity() {
+    @Inject
+    @IoDispatcher
+    lateinit var ioDispatcher: CoroutineDispatcher
 
     private lateinit var binding: ActivityMapBinding
 
     private val mapViewModel: MapViewModel by viewModels()
+
     private val searchViewModel: SearchViewModel by viewModels()
 
     private val mapView by lazy {
@@ -41,7 +43,7 @@ class MapActivity @Inject constructor(
 
     private val marker = MapPOIItem()
 
-    private var busStopEntity: BusStopEntity? = null
+    private var busStop: BusStopEntity? = null
 
     private val permissionList = arrayOf(
         android.Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -66,8 +68,16 @@ class MapActivity @Inject constructor(
         requestMultiplePermission.launch(permissionList)
 
         CoroutineScope(ioDispatcher).launch {
-            busStopEntity = readBusStopInfoFromJson(this@MapActivity)
+            busStop = readBusStopInfoFromJson(this@MapActivity)
+            var cnt= 0
+            for (i in busStop!!) {
+//                setMarker(i.WGS84_LAT.toDouble(), i.WGS84_LOGT.toDouble(), i.STTN_NM_INFO)
+                cnt++
+            }
+            Log.e("cnt", cnt.toString())
         }
+
+
 
         if (intent.hasExtra("address")) {
             val address = intent.getStringExtra("address")
