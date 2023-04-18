@@ -12,18 +12,23 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wbc.data.BusStopEntity
 import com.example.wbc.databinding.ActivityMapBinding
+import com.example.wbc.di.coroutine.IoDispatcher
 import com.example.wbc.ui.search.SearchViewModel
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MapActivity() : AppCompatActivity() {
+class MapActivity @Inject constructor(
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
+) : AppCompatActivity() {
 
     private lateinit var binding: ActivityMapBinding
 
@@ -35,6 +40,8 @@ class MapActivity() : AppCompatActivity() {
     }
 
     private val marker = MapPOIItem()
+
+    private var busStopEntity: BusStopEntity? = null
 
     private val permissionList = arrayOf(
         android.Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -50,26 +57,7 @@ class MapActivity() : AppCompatActivity() {
             }
         }
 
-    private fun loadJsonFromAsset(context: Context, fileName: String): String {
-        val stringBuilder = StringBuilder()
-        try {
-            val inputStream = context.assets.open(fileName)
-            val bufferedReader = BufferedReader(InputStreamReader(inputStream))
-            var line: String?
-            while (bufferedReader.readLine().also { line = it } != null) {
-                stringBuilder.append(line)
-            }
-            bufferedReader.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return stringBuilder.toString()
-    }
 
-    // 사용 예시
-    private val json = loadJsonFromAsset(this, "BusStopInfo.json")
-
-    private val gson = Gson()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMapBinding.inflate(layoutInflater)
@@ -77,8 +65,8 @@ class MapActivity() : AppCompatActivity() {
 
         requestMultiplePermission.launch(permissionList)
 
-        gson.fromJson(json, BusStopEntity::class.java).also {
-//            Log.e("gson", it.toString())
+        CoroutineScope(ioDispatcher).launch {
+            busStopEntity = readBusStopInfoFromJson(this@MapActivity)
         }
 
         if (intent.hasExtra("address")) {
@@ -105,6 +93,22 @@ class MapActivity() : AppCompatActivity() {
                 searchViewModel.insertHistory(binding.editSearch.text.toString())
             }
         }
+    }
+
+    private suspend fun readBusStopInfoFromJson(context: Context): BusStopEntity? = withContext(ioDispatcher){
+        var busStopEntity: BusStopEntity? = null
+        try {
+            val inputStream = context.assets.open("BusStopInfo.json")
+            val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+            val json = bufferedReader.use { it.readText() }
+            bufferedReader.close()
+            inputStream.close()
+            val gson = Gson()
+            busStopEntity = gson.fromJson(json, BusStopEntity::class.java)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        busStopEntity
     }
 
     private fun getMyLocation() {
