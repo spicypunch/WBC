@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "854561021412",
+    "project_id": "when-is-the-bus-coming",
+    "storage_bucket": "when-is-the-bus-coming.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854561021412:android:b4f0cbb098ae662116fbf1",
+        "android_client_info": {
+          "package_name": "com.example.wbc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854561021412-ck6gra4fl4r3gfi9qao2n4sa0i8ta9g9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wbc",
+            "certificate_hash": "1ab3fa9de6070ea9d1f413b435c591d99b1dcd56"
+          }
+        },
+        {
+          "client_id": "854561021412-hhtjk74uovvk73g0nnavr643nmtp6kud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUHGxKPEvl41O1OAotGkFamGnKj3W1Wrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854561021412-hhtjk74uovvk73g0nnavr643nmtp6kud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
