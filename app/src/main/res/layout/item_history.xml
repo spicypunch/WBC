@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.wbc.data.SearchHistoryEntity" />
+            type="com.example.wbc.data.entity.SearchHistoryEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,14 +1,13 @@
 package com.example.wbc.ui.search
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wbc.databinding.ItemHistoryBinding
-import com.example.wbc.data.SearchHistoryEntity
+import com.example.wbc.data.entity.SearchHistoryEntity
 
 class SearchHistoryAdapter(private val listener: ItemClickListener) : ListAdapter<SearchHistoryEntity, SearchHistoryAdapter.MyViewHolder>(diffUtil) {
 

@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.wbc.data.SearchHistoryEntity
+import com.example.wbc.data.entity.SearchHistoryEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

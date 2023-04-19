@@ -1,8 +1,6 @@
 package com.example.wbc.ui.map
 
 import android.content.Context
-import android.location.Geocoder
-import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
@@ -10,7 +8,6 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.wbc.data.BusStopEntity
 import com.example.wbc.databinding.ActivityMapBinding
 import com.example.wbc.di.coroutine.IoDispatcher
 import com.example.wbc.ui.search.SearchViewModel
@@ -43,7 +40,7 @@ class MapActivity () : AppCompatActivity() {
 
     private val marker = MapPOIItem()
 
-    private var busStop: BusStopEntity? = null
+//    private var busStop: BusStopEntity? = null
 
     private val permissionList = arrayOf(
         android.Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -67,22 +64,22 @@ class MapActivity () : AppCompatActivity() {
 
         requestMultiplePermission.launch(permissionList)
 
-        CoroutineScope(ioDispatcher).launch {
-            busStop = readBusStopInfoFromJson(this@MapActivity)
-            var cnt= 0
-            for (i in busStop!!) {
+//        CoroutineScope(ioDispatcher).launch {
+//            busStop = readBusStopInfoFromJson(this@MapActivity)
+//            var cnt= 0
+//            for (i in busStop!!) {
 //                setMarker(i.WGS84_LAT.toDouble(), i.WGS84_LOGT.toDouble(), i.STTN_NM_INFO)
-                cnt++
-            }
-            Log.e("cnt", cnt.toString())
-        }
+//                cnt++
+//            }
+//            Log.e("cnt", cnt.toString())
+//        }
 
 
 
         if (intent.hasExtra("address")) {
             val address = intent.getStringExtra("address")
             val location = searchLocation(address!!)
-            setMarker(location.latitude, location.longitude, address)
+//            setMarker(location.latitude, location.longitude, address)
         }
 
         val mapViewContainer = binding.mapView as ViewGroup
@@ -98,28 +95,28 @@ class MapActivity () : AppCompatActivity() {
                 Toast.makeText(this, "주소를 입력해주세요", Toast.LENGTH_SHORT).show()
             } else {
                 val location = searchLocation(binding.editSearch.text.toString())
-                setMarker(location.latitude, location.longitude, binding.editSearch.text.toString())
+//                setMarker(location.latitude, location.longitude, binding.editSearch.text.toString())
                 // 검색 기록 추가
                 searchViewModel.insertHistory(binding.editSearch.text.toString())
             }
         }
     }
 
-    private suspend fun readBusStopInfoFromJson(context: Context): BusStopEntity? = withContext(ioDispatcher){
-        var busStopEntity: BusStopEntity? = null
-        try {
-            val inputStream = context.assets.open("BusStopInfo.json")
-            val bufferedReader = BufferedReader(InputStreamReader(inputStream))
-            val json = bufferedReader.use { it.readText() }
-            bufferedReader.close()
-            inputStream.close()
-            val gson = Gson()
-            busStopEntity = gson.fromJson(json, BusStopEntity::class.java)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        busStopEntity
-    }
+//    private suspend fun readBusStopInfoFromJson(context: Context): BusStopEntity? = withContext(ioDispatcher){
+//        var busStopEntity: BusStopEntity? = null
+//        try {
+//            val inputStream = context.assets.open("BusStopInfo.json")
+//            val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+//            val json = bufferedReader.use { it.readText() }
+//            bufferedReader.close()
+//            inputStream.close()
+//            val gson = Gson()
+//            busStopEntity = gson.fromJson(json, BusStopEntity::class.java)
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//        busStopEntity
+//    }
 
     private fun getMyLocation() {
         val locationProvider = LocationProvider(this)
@@ -129,21 +126,25 @@ class MapActivity () : AppCompatActivity() {
         setMarker(latitude, longitude, "현재 위치")
     }
 
-    private fun searchLocation(address: String) : Location {
-        return try {
-            Geocoder(this, Locale.KOREA).getFromLocationName(address, 1)?.let {
-                Location("").apply {
-                    latitude = it[0].latitude
-                    longitude = it[0].longitude
-                }
-            } ?: Location("").apply {
-                latitude = 0.0
-                longitude = 0.0
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            searchLocation(address)
-        }
+//    private fun searchLocation(address: String) : Location {
+//        return try {
+//            Geocoder(this, Locale.KOREA).getFromLocationName(address, 1)?.let {
+//                Location("").apply {
+//                    latitude = it[0].latitude
+//                    longitude = it[0].longitude
+//                }
+//            } ?: Location("").apply {
+//                latitude = 0.0
+//                longitude = 0.0
+//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//            searchLocation(address)
+//        }
+//    }
+
+    private fun searchLocation(address: String)  {
+        mapView.findPOIItemByName(address).toString()
     }
 
     private fun setMarker(latitude: Double, longitude: Double, title: String) {

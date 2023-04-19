@@ -1,6 +1,6 @@
 package com.example.wbc.repository
 
-import com.example.wbc.data.SearchHistoryEntity
+import com.example.wbc.data.entity.SearchHistoryEntity
 import kotlinx.coroutines.flow.Flow
 
 interface RoomRepository {
