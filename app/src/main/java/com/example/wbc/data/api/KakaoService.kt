@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface KakaoService {
     @GET("/v2/local/search/keyword.json?radius=2000")
-    fun searchPlace(
+    suspend fun searchPlace(
         @Query("query") query: String,
         @Header("Authorization") auth: String
     ): Call<List<KakaoSearchResponse.Document>>

@@ -15,11 +15,11 @@ class SearchViewModel @Inject constructor(
     private val roomRepository: RoomRepositoryImpl
 ) : ViewModel() {
 
-    private var _items = MutableLiveData<List<SearchHistoryEntity>>(listOf())
+    private val _items = MutableLiveData<List<SearchHistoryEntity>>()
     val items: LiveData<List<SearchHistoryEntity>>
         get() = _items
 
-    private var _toastMessage = MutableLiveData<String>()
+    private val _toastMessage = MutableLiveData<String>()
     val toastMessage: LiveData<String>
         get() = _toastMessage
 

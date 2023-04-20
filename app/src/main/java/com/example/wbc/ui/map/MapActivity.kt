@@ -78,9 +78,14 @@ class MapActivity () : AppCompatActivity() {
 
         if (intent.hasExtra("address")) {
             val address = intent.getStringExtra("address")
-            val location = searchLocation(address!!)
+            mapViewModel.searchLocation()
+//            val location = searchLocation(address!!)
 //            setMarker(location.latitude, location.longitude, address)
         }
+
+        mapViewModel.searchResult.observe(this, androidx.lifecycle.Observer {
+            Log.e("test", it.toString())
+        })
 
         val mapViewContainer = binding.mapView as ViewGroup
         mapViewContainer.addView(mapView)
@@ -94,9 +99,10 @@ class MapActivity () : AppCompatActivity() {
             if (binding.editSearch.text.toString().isBlank()) {
                 Toast.makeText(this, "주소를 입력해주세요", Toast.LENGTH_SHORT).show()
             } else {
-                val location = searchLocation(binding.editSearch.text.toString())
+//                val location = searchLocation(binding.editSearch.text.toString())
 //                setMarker(location.latitude, location.longitude, binding.editSearch.text.toString())
                 // 검색 기록 추가
+                mapViewModel.searchLocation()
                 searchViewModel.insertHistory(binding.editSearch.text.toString())
             }
         }
@@ -143,9 +149,9 @@ class MapActivity () : AppCompatActivity() {
 //        }
 //    }
 
-    private fun searchLocation(address: String)  {
-        mapView.findPOIItemByName(address).toString()
-    }
+//    private fun searchLocation(address: String)  {
+//        mapView.findPOIItemByName(address).toString()
+//    }
 
     private fun setMarker(latitude: Double, longitude: Double, title: String) {
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);

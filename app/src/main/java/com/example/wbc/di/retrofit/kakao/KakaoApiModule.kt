@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object KakaoApiModule {
-    private const val BASE_URL = "https://dapi.kakao.com/"
+    private const val BASE_URL = "https://dapi.kakao.com"
     private var INSTANCE: Retrofit? = null
 
     @Singleton
