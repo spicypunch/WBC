@@ -84,7 +84,7 @@ class MapActivity () : AppCompatActivity() {
         }
 
         mapViewModel.searchResult.observe(this, androidx.lifecycle.Observer {
-            Log.e("test", it.toString())
+//            Log.e("test", it.toString())
         })
 
         val mapViewContainer = binding.mapView as ViewGroup

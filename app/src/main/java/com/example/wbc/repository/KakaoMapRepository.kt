@@ -4,5 +4,6 @@ import com.example.wbc.data.entity.KakaoSearchResponse
 
 interface KakaoMapRepository {
 
-    suspend fun searchLocation(): List<KakaoSearchResponse.Document>
+    fun searchLocation()
+//    : List<KakaoSearchResponse.Document>
 }

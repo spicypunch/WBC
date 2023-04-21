@@ -20,8 +20,8 @@ class MapViewModel @Inject constructor(
     val searchResult: LiveData<List<KakaoSearchResponse.Document>>
         get() = _searchResult
     fun searchLocation() {
-        viewModelScope.launch {
-            _searchResult.value = kakaoMapRepository.searchLocation()
-        }
+
+            kakaoMapRepository.searchLocation()
+
     }
 }

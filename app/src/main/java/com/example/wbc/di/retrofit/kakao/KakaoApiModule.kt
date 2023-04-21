@@ -1,5 +1,6 @@
 package com.example.wbc.di.retrofit.kakao
 
+import android.util.Log
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
