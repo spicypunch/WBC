@@ -1,9 +1,9 @@
 package com.example.wbc.repository
 
-import com.example.wbc.data.entity.KakaoSearchResponse
+import com.example.wbc.data.entity.KakaoResponse
+
 
 interface KakaoMapRepository {
 
-    fun searchLocation()
-//    : List<KakaoSearchResponse.Document>
+    suspend fun searchLocation(address: String, latitude: Double, longitude: Double) : KakaoResponse
 }

@@ -1,6 +1,9 @@
 package com.example.wbc.data.entity
 
-class KakaoSearchResponse: ArrayList<KakaoSearchResponse.Document>() {
+data class KakaoResponse(
+    val documents: List<Document>,
+    val meta: Meta
+) {
     data class Document(
         val address_name: String,
         val category_group_code: String,
@@ -15,4 +18,16 @@ class KakaoSearchResponse: ArrayList<KakaoSearchResponse.Document>() {
         val x: String,
         val y: String
     )
+    data class Meta(
+        val is_end: Boolean,
+        val pageable_count: Int,
+        val same_name: SameName,
+        val total_count: Int
+    ) {
+        data class SameName(
+            val keyword: String,
+            val region: List<Any>,
+            val selected_region: String
+        )
+    }
 }
