@@ -71,6 +71,9 @@ class MapActivity () : AppCompatActivity() {
         // 현재 위치
         getMyLocation()
 
+        // 현재 위치 근방의 버스 정류소 출력
+        mapViewModel.getBusStationInfo(latitude, longitude)
+
         // Search Fragment에서 넘어온 값 처리
         if (intent.hasExtra("address")) {
             val address = intent.getStringExtra("address")
@@ -109,6 +112,10 @@ class MapActivity () : AppCompatActivity() {
                 setMarker(it.documents[0].y.toDouble(), it.documents[0].x.toDouble(), it.documents[0].place_name)
             }
         })
+
+        mapViewModel.busStationResult.observe(this, androidx.lifecycle.Observer {
+            Log.e("it", it.toString())
+        })
     }
 
     private fun getMyLocation() {
@@ -119,6 +126,7 @@ class MapActivity () : AppCompatActivity() {
         setMarker(latitude, longitude, "현재 위치")
     }
 
+    // 지도에 마커 생성
     private fun setMarker(latitude: Double, longitude: Double, title: String) {
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
         marker.itemName = title
