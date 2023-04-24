@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.wbc.data.entity.BusArrivalResponse
 import com.example.wbc.data.entity.BusStationResponse
 import com.example.wbc.data.entity.KakaoResponse
 import com.example.wbc.repository.BusAPIRepositoryImpl
@@ -27,6 +28,10 @@ class MapViewModel @Inject constructor(
     val busStationResult: LiveData<BusStationResponse>
         get() = _busStationResult
 
+    private val _busArrivalTimeResult = MutableLiveData<BusArrivalResponse>()
+    val busArrivalTimeResult: LiveData<BusArrivalResponse>
+        get() = _busArrivalTimeResult
+
     fun searchLocation(address: String, latitude: Double, longitude: Double) {
         viewModelScope.launch {
             _searchResult.value = kakaoMapRepository.searchLocation(address, latitude, longitude)
@@ -36,6 +41,12 @@ class MapViewModel @Inject constructor(
     fun getBusStationInfo(latitude: Double, longitude: Double) {
         viewModelScope.launch {
             _busStationResult.value = busAPIRepository.getBusStationInfo(latitude, longitude)
+        }
+    }
+
+    fun getBusArrivalTime(stationId: String) {
+        viewModelScope.launch {
+            _busArrivalTimeResult.value = busAPIRepository.getBusArrivalTime(stationId)
         }
     }
 }

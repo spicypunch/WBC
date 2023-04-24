@@ -1,5 +1,6 @@
 package com.example.wbc.data.api
 
+import com.example.wbc.data.entity.BusArrivalResponse
 import com.example.wbc.data.entity.BusStationResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -18,5 +19,5 @@ interface BusService {
     fun getBusArrivalTime(
         @Query("serviceKey") serviceKey: String,
         @Query("stationId") stationId: String
-    )
+    ): Call<BusArrivalResponse>
 }

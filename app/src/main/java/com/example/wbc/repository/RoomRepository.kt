@@ -10,4 +10,6 @@ interface RoomRepository {
     suspend fun insertHistory(searchHistoryEntity: SearchHistoryEntity)
 
     suspend fun deleteHistory(searchHistoryEntity: SearchHistoryEntity)
+
+    suspend fun deleteAllHistory()
 }

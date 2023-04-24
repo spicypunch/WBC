@@ -14,9 +14,12 @@ interface SearchHistoryDao {
     @Query("SELECT * FROM SearchHistoryEntity ORDER BY id DESC")
     fun getAllItem(): Flow<List<SearchHistoryEntity>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItem(item: SearchHistoryEntity)
 
     @Delete
     suspend fun deleteItem(item: SearchHistoryEntity)
+
+    @Query("DELETE FROM SearchHistoryEntity")
+    suspend fun deleteAllItem()
 }

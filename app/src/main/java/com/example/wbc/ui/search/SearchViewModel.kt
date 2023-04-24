@@ -44,5 +44,10 @@ class SearchViewModel @Inject constructor(
         _toastMessage.value = "검색 기록이 삭제되었습니다."
     }
 
-
+    fun deleteAllHistory() {
+        viewModelScope.launch {
+            roomRepository.deleteAllHistory()
+        }
+        _toastMessage.value = "검색 기록이 전부 삭제되었습니다."
+    }
 }

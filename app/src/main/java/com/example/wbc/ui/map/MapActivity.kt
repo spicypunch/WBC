@@ -79,8 +79,9 @@ class MapActivity () : AppCompatActivity() {
             val address = intent.getStringExtra("address")
             if (address != null) {
                 mapViewModel.searchLocation(address, latitude, longitude)
+                setMarker(latitude, longitude, address)
             }
-//            setMarker(location.latitude, location.longitude, address)
+
         }
 
         // 카카오맵 띄우기
@@ -96,13 +97,15 @@ class MapActivity () : AppCompatActivity() {
         binding.btnSearch.setOnClickListener {
             if (binding.editSearch.text.toString().isBlank()) {
                 Toast.makeText(this, "주소를 입력해주세요", Toast.LENGTH_SHORT).show()
+                mapViewModel.getBusArrivalTime("GGB206000108")
             } else {
-//                setMarker(location.latitude, location.longitude, binding.editSearch.text.toString())
-                // 검색 기록 추가
                 mapViewModel.searchLocation(binding.editSearch.text.toString(), latitude, longitude)
+                // 검색 기록 추가
                 searchViewModel.insertHistory(binding.editSearch.text.toString())
             }
         }
+
+
 
         // 검색 결과
         mapViewModel.searchResult.observe(this, androidx.lifecycle.Observer {
@@ -110,11 +113,23 @@ class MapActivity () : AppCompatActivity() {
                 Toast.makeText(this, "2km 근방에 찾으신 시설이 없습니다.", Toast.LENGTH_SHORT).show()
             } else {
                 setMarker(it.documents[0].y.toDouble(), it.documents[0].x.toDouble(), it.documents[0].place_name)
+                mapViewModel.getBusStationInfo(it.documents[0].y.toDouble(), it.documents[0].x.toDouble())
             }
         })
 
+        // 버스 정류장 출력
         mapViewModel.busStationResult.observe(this, androidx.lifecycle.Observer {
-            Log.e("it", it.toString())
+            if (it.body?.items?.item?.isEmpty() == true) {
+                Toast.makeText(this, "근처에 버스 정류장이 없습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                for (i in it.body?.items?.item!!) {
+                    setMarker(i.gpsLati!!, i.gpsLong!!, i.nodeNm!!)
+                }
+            }
+        })
+
+        mapViewModel.busArrivalTimeResult.observe(this, androidx.lifecycle.Observer {
+            Log.e("result", it.toString())
         })
     }
 
@@ -131,8 +146,13 @@ class MapActivity () : AppCompatActivity() {
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
         marker.itemName = title
         marker.mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude)
-        marker.markerType = MapPOIItem.MarkerType.BluePin
-        marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin
+
+        if (title != "현재 위치") {
+            marker.markerType = MapPOIItem.MarkerType.BluePin
+            marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin
+        } else {
+            marker.markerType = MapPOIItem.MarkerType.RedPin
+        }
 
         mapView.addPOIItem(marker)
     }

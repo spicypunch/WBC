@@ -6,15 +6,14 @@ import retrofit2.*
 import javax.inject.Inject
 
 class KakaoMapRepositoryImpl @Inject constructor(
-    private val provideKakaoService: Retrofit
+    private val kakaoService: KakaoService
 ) : KakaoMapRepository {
     override suspend fun searchLocation(
         address: String,
         latitude: Double,
         longitude: Double
     ): KakaoResponse {
-        return provideKakaoService.create(KakaoService::class.java)
-            .searchPlace(
+        return kakaoService.searchPlace(
                 address,
                 2000,
                 latitude,

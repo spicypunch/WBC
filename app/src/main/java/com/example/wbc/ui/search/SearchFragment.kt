@@ -53,6 +53,10 @@ class SearchFragment() : Fragment(), ItemClickListener {
             }
         }
 
+        binding.tvDeleteAllHistory.setOnClickListener {
+            searchViewModel.deleteAllHistory()
+        }
+
         searchViewModel.items.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
