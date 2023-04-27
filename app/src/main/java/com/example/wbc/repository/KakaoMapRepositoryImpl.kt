@@ -15,7 +15,7 @@ class KakaoMapRepositoryImpl @Inject constructor(
     ): KakaoResponse {
         return kakaoService.searchPlace(
                 address,
-                2000,
+                5000,
                 latitude,
                 longitude,
                 "KakaoAK adbab23df5d7301de7db6ce10d19ff10"

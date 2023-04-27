@@ -12,6 +12,7 @@ data class BusArrivalResponse(
     @Element(name = "msgBody")
     var body: MsgBody? = null
 )
+
 @Xml(name = "msgHeader")
 data class MsgHeader(
     @PropertyElement(name = "queryTime")

@@ -28,10 +28,6 @@ class MapViewModel @Inject constructor(
     val busStationResult: LiveData<BusStationResponse>
         get() = _busStationResult
 
-    private val _busArrivalTimeResult = MutableLiveData<BusArrivalResponse>()
-    val busArrivalTimeResult: LiveData<BusArrivalResponse>
-        get() = _busArrivalTimeResult
-
     fun searchLocation(address: String, latitude: Double, longitude: Double) {
         viewModelScope.launch {
             _searchResult.value = kakaoMapRepository.searchLocation(address, latitude, longitude)
@@ -41,12 +37,6 @@ class MapViewModel @Inject constructor(
     fun getBusStationInfo(latitude: Double, longitude: Double) {
         viewModelScope.launch {
             _busStationResult.value = busAPIRepository.getBusStationInfo(latitude, longitude)
-        }
-    }
-
-    fun getBusArrivalTime(stationId: String) {
-        viewModelScope.launch {
-            _busArrivalTimeResult.value = busAPIRepository.getBusArrivalTime(stationId)
         }
     }
 }

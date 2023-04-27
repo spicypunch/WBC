@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.wbc.data.entity.BusArrivalResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:id="@+id/image_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bookmark_add"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_bus_num"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_bus_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.body.busArrivalList.get(0).routeId}"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@+id/image_bookmark"
+            app:layout_constraintEnd_toStartOf="@+id/tv_bus_time1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_bus_time1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.body.busArrivalList.get(0).predictTime1}"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_bus_num"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_bus_time2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.body.busArrivalList.get(0).predictTime2}"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_bus_num"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bus_time1"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
