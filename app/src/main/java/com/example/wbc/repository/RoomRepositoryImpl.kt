@@ -21,4 +21,8 @@ class RoomRepositoryImpl @Inject constructor(
     override suspend fun deleteHistory(searchHistoryEntity: SearchHistoryEntity) = withContext(ioDispatcher) {
         searchHistoryDao.deleteItem(searchHistoryEntity)
     }
+
+    override suspend fun deleteAllHistory() {
+        searchHistoryDao.deleteAllItem()
+    }
 }
