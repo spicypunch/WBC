@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wbc.data.entity.BusArrivalResponse
+import com.example.wbc.data.entity.BusArrivalList
 import com.example.wbc.databinding.ItemBusArrivalBinding
 
 
-class BusArrivalAdapter() : ListAdapter<BusArrivalResponse, BusArrivalAdapter.MyViewHolder>(diffUtil){
+class BusArrivalAdapter() : ListAdapter<BusArrivalList, BusArrivalAdapter.MyViewHolder>(diffUtil){
 
     class MyViewHolder(private val binding: ItemBusArrivalBinding) : RecyclerView.ViewHolder(binding.root) {
         val root = binding.root
 
-        fun bind(item: BusArrivalResponse) {
+        fun bind(item: BusArrivalList) {
             binding.data = item
 
             itemView.setOnClickListener {
@@ -33,13 +33,13 @@ class BusArrivalAdapter() : ListAdapter<BusArrivalResponse, BusArrivalAdapter.My
 
     companion object {
 
-        val diffUtil = object : DiffUtil.ItemCallback<BusArrivalResponse>() {
+        val diffUtil = object : DiffUtil.ItemCallback<BusArrivalList>() {
 
-            override fun areItemsTheSame(oldItem: BusArrivalResponse, newItem: BusArrivalResponse): Boolean {
-                return oldItem.body == newItem.body
+            override fun areItemsTheSame(oldItem: BusArrivalList, newItem: BusArrivalList): Boolean {
+                return oldItem.routeId == newItem.routeId
             }
 
-            override fun areContentsTheSame(oldItem: BusArrivalResponse, newItem: BusArrivalResponse): Boolean {
+            override fun areContentsTheSame(oldItem: BusArrivalList, newItem: BusArrivalList): Boolean {
                 return oldItem == newItem
             }
         }

@@ -24,10 +24,17 @@ class BusArrivalActivity : AppCompatActivity() {
         binding.recyclerviewBusArrival.adapter = adapter
         binding.recyclerviewBusArrival.layoutManager = LinearLayoutManager(this)
 
-        intent.getStringExtra("stationID")?.let { busArrivalViewModel.getBusArrivalTime(it) }
+        intent.getStringExtra("stationID")?.let {
+            busArrivalViewModel.getBusArrivalTime(it)
+            busArrivalViewModel.getBusName(it)
+        }
 
         busArrivalViewModel.busArrivalTimeResult.observe(this, Observer {
-            adapter.submitList(it.body?.busArrivalList as MutableList<BusArrivalResponse>)
+            adapter.submitList(it.body?.busArrivalList)
+        })
+
+        busArrivalViewModel.busName.observe(this, Observer {
+
         })
     }
 }
