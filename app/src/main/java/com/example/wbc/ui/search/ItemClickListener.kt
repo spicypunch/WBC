@@ -1,6 +1,6 @@
 package com.example.wbc.ui.search
 
-import com.example.wbc.data.SearchHistoryEntity
+import com.example.wbc.data.entity.SearchHistoryEntity
 
 interface ItemClickListener {
 

@@ -1,4 +1,4 @@
-package com.example.wbc.data
+package com.example.wbc.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

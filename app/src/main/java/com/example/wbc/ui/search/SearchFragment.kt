@@ -2,7 +2,6 @@ package com.example.wbc.ui.search
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wbc.databinding.FragmentSearchBinding
-import com.example.wbc.data.SearchHistoryEntity
+import com.example.wbc.data.entity.SearchHistoryEntity
 import com.example.wbc.ui.map.MapActivity
 import dagger.hilt.android.AndroidEntryPoint
 
