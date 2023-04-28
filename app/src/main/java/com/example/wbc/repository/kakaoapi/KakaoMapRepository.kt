@@ -1,4 +1,4 @@
-package com.example.wbc.repository
+package com.example.wbc.repository.kakaoapi
 
 import com.example.wbc.data.entity.KakaoResponse
 

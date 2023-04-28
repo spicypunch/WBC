@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.wbc.databinding.ActivityMainBinding
 import com.example.wbc.ui.bookmark.BookmarkFragment
-import com.example.wbc.ui.login.LoginActivity
+import com.example.wbc.ui.login.login.LoginActivity
 import com.example.wbc.ui.search.SearchFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint

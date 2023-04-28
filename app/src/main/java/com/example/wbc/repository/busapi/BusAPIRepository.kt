@@ -1,4 +1,4 @@
-package com.example.wbc.repository
+package com.example.wbc.repository.busapi
 
 import com.example.wbc.data.entity.BusArrivalResponse
 import com.example.wbc.data.entity.BusInfoResponse

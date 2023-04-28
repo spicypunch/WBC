@@ -1,4 +1,4 @@
-package com.example.wbc.ui.login
+package com.example.wbc.ui.login.signup
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

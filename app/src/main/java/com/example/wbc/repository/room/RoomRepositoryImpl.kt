@@ -1,4 +1,4 @@
-package com.example.wbc.repository
+package com.example.wbc.repository.room
 
 import com.example.wbc.di.coroutine.IoDispatcher
 import com.example.wbc.data.entity.SearchHistoryEntity

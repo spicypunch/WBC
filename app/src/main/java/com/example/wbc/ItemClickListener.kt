@@ -1,4 +1,4 @@
-package com.example.wbc.ui.search
+package com.example.wbc
 
 import com.example.wbc.data.entity.SearchHistoryEntity
 

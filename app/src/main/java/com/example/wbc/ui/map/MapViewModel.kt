@@ -1,15 +1,13 @@
 package com.example.wbc.ui.map
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.wbc.data.entity.BusArrivalResponse
 import com.example.wbc.data.entity.BusStationResponse
 import com.example.wbc.data.entity.KakaoResponse
-import com.example.wbc.repository.BusAPIRepositoryImpl
-import com.example.wbc.repository.KakaoMapRepositoryImpl
+import com.example.wbc.repository.busapi.BusAPIRepositoryImpl
+import com.example.wbc.repository.kakaoapi.KakaoMapRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

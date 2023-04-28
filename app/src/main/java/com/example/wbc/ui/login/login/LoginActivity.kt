@@ -1,9 +1,10 @@
-package com.example.wbc.ui.login
+package com.example.wbc.ui.login.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.wbc.databinding.ActivityLoginBinding
+import com.example.wbc.ui.login.signup.SignUpActivity
 
 class LoginActivity : AppCompatActivity() {
 
