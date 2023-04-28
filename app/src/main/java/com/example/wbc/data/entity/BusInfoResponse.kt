@@ -7,10 +7,10 @@ import com.tickaroo.tikxml.annotation.Xml
 @Xml(name = "response")
 data class BusInfoResponse(
     @Element(name = "msgHeader")
-    var header: MsgHeader? = null,
+    var header: BusHeader? = null,
 
     @Element(name = "msgBody")
-    var body: MsgBody? = null
+    var body: BusBody? = null
 )
 
 @Xml(name = "msgHeader")

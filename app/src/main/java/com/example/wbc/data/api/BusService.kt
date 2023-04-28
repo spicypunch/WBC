@@ -25,6 +25,6 @@ interface BusService {
     @GET("/6410000/busrouteservice/getBusRouteInfoItem")
     fun getBusName(
         @Query("serviceKey") serviceKey: String,
-        @Query("stationId") stationId: String
+        @Query("routeId") routeId: Int
     ): Call<BusInfoResponse>
 }

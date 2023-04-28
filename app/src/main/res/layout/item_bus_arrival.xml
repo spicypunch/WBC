@@ -5,12 +5,12 @@
     <data>
         <variable
             name="data"
-            type="com.example.wbc.data.entity.BusArrivalList" />
+            type="com.example.wbc.data.entity.BusInfoEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp">
 
@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/bookmark_add"
+            android:layout_marginStart="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +27,7 @@
             android:id="@+id/tv_bus_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(data.routeId) + '번'}"
+            android:text="@{String.valueOf(data.busNum) + '번'}"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/image_bookmark"
             app:layout_constraintEnd_toStartOf="@+id/tv_bus_time1"

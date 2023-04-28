@@ -1,4 +1,4 @@
-package com.example.wbc.repository
+package com.example.wbc.repository.busapi
 
 import com.example.wbc.data.entity.BusArrivalResponse
 import com.example.wbc.data.entity.BusInfoResponse
@@ -10,5 +10,5 @@ interface BusAPIRepository {
 
     suspend fun getBusArrivalTime(stationId: String): BusArrivalResponse
 
-    suspend fun getBusName(stationId: String) : BusInfoResponse
+    suspend fun getBusName(routeId: Int) : BusInfoResponse
 }

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wbc.data.entity.BusArrivalResponse
 import com.example.wbc.data.entity.BusInfoResponse
-import com.example.wbc.repository.BusAPIRepositoryImpl
+import com.example.wbc.repository.busapi.BusAPIRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,9 +30,9 @@ class BusArrivalViewModel @Inject constructor(
         }
     }
 
-    fun getBusName(stationId: String) {
+    fun getBusName(routeId: Int) {
         viewModelScope.launch {
-            _busName.value = busAPIRepository.getBusName(stationId)
+            _busName.value = busAPIRepository.getBusName(routeId)
         }
     }
 }
