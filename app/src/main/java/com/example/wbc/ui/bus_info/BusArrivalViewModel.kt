@@ -30,9 +30,9 @@ class BusArrivalViewModel @Inject constructor(
         }
     }
 
-    fun getBusName(stationId: String) {
+    fun getBusName(routeId: Int) {
         viewModelScope.launch {
-            _busName.value = busAPIRepository.getBusName(stationId)
+            _busName.value = busAPIRepository.getBusName(routeId)
         }
     }
 }

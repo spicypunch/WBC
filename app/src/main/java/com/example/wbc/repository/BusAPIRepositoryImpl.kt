@@ -29,10 +29,10 @@ class BusAPIRepositoryImpl @Inject constructor(
         ).await()
     }
 
-    override suspend fun getBusName(stationId: String): BusInfoResponse {
+    override suspend fun getBusName(routeId: Int): BusInfoResponse {
         return busService.getBusName(
             "Ly2IHtl1aGXioF/sk3QPO8m0vKzS0zMpHGsaq3gfvRWJ7wHg1Pim+YJW7mchXjPxvt/s1BHsszlod8Qqv8CVVA==",
-            stationId
+            routeId
         ).await()
     }
 }

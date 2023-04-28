@@ -10,5 +10,5 @@ interface BusAPIRepository {
 
     suspend fun getBusArrivalTime(stationId: String): BusArrivalResponse
 
-    suspend fun getBusName(stationId: String) : BusInfoResponse
+    suspend fun getBusName(routeId: Int) : BusInfoResponse
 }

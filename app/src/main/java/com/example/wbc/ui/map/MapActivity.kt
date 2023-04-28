@@ -124,6 +124,8 @@ class MapActivity() : AppCompatActivity() {
         latitude = locationProvider.getLocationLatitude()
         longitude = locationProvider.getLocationLongitude()
 
+        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
+
 //        setMarker(latitude, longitude, "현재 위치", null)
     }
 
