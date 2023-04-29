@@ -5,28 +5,28 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wbc.data.entity.BusArrivalList
+import com.example.wbc.listener.AddBookmarkClickListener
 import com.example.wbc.data.entity.BusInfoEntity
 import com.example.wbc.databinding.ItemBusArrivalBinding
 
 
-class BusArrivalAdapter() : ListAdapter<BusInfoEntity, BusArrivalAdapter.MyViewHolder>(diffUtil){
+class BusArrivalAdapter(private val listener: AddBookmarkClickListener) : ListAdapter<BusInfoEntity, BusArrivalAdapter.MyViewHolder>(diffUtil){
 
-    class MyViewHolder(private val binding: ItemBusArrivalBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemBusArrivalBinding, private val listener: AddBookmarkClickListener) : RecyclerView.ViewHolder(binding.root) {
         val root = binding.root
 
         fun bind(item: BusInfoEntity) {
             binding.data = item
 
             binding.imageBookmark.setOnClickListener {
-
+                listener.onClick(item)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding: ItemBusArrivalBinding = ItemBusArrivalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        return MyViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

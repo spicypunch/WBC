@@ -1,25 +1,22 @@
 package com.example.wbc.ui.bus_info
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.wbc.listener.AddBookmarkClickListener
 import com.example.wbc.data.entity.BusInfoEntity
 import com.example.wbc.databinding.ActivityBusArrivalBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class BusArrivalActivity : AppCompatActivity() {
+class BusArrivalActivity : AppCompatActivity(), AddBookmarkClickListener {
 
     private lateinit var binding: ActivityBusArrivalBinding
     private val busArrivalViewModel: BusArrivalViewModel by viewModels()
-    private val adapter by lazy { BusArrivalAdapter() }
+    private val adapter by lazy { BusArrivalAdapter(this) }
     private var busList = mutableListOf<BusInfoEntity>()
     private var map = mutableMapOf<String, String>()
     private var cnt = 0
@@ -37,9 +34,15 @@ class BusArrivalActivity : AppCompatActivity() {
             busArrivalViewModel.getBusArrivalTime(stationID)
         }
 
+        binding.fabRefresh.setOnClickListener {
+            busList.clear()
+            cnt = 0
+            busArrivalViewModel.getBusArrivalTime(stationID!!)
+        }
+
         /**
          * 정류장 ID를 이용해 해당 정류장에 도착 예정인 버스의 목록을 조회한다.
-         * 버스 도착 예정 API가 가진 단점으로는 응답 내용에 버스의 번호가 포함이 안 된다.
+         * 버스 도착 예정 API의 특징으론 응답 내용에 버스의 번호가 포함이 안 된다.
          * 버스의 번호 대신 해당 버스가 가진 고유 routeId를 가지기 때문에 routeId로 버스 정보 조회 API 요청을 한다.
          * 그리고 일단 routeID와 도착예정시간1, 도착예정시간2를 BusInfoEntity에 저장해준다.
          */
@@ -72,12 +75,6 @@ class BusArrivalActivity : AppCompatActivity() {
                 replaceBusName()
             }
         })
-
-        binding.fabRefresh.setOnClickListener {
-            busList.clear()
-            cnt = 0
-            busArrivalViewModel.getBusArrivalTime(stationID!!)
-        }
     }
 
     /**
@@ -89,5 +86,8 @@ class BusArrivalActivity : AppCompatActivity() {
             it.busNum = map[it.busNum]!!
         }
         adapter.submitList(busList)
+    }
+    override fun onClick(item: BusInfoEntity) {
+
     }
 }
