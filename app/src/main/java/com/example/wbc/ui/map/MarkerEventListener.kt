@@ -19,10 +19,12 @@ class MarkerEventListener(val context: MapActivity) : MapView.POIItemEventListen
         p1: MapPOIItem?,
         p2: MapPOIItem.CalloutBalloonButtonType?
     ) {
+        // 문자열은 전부 제거한 후 stationID에 저장
+        val regex = "\\D+".toRegex()
+        val stationID = p1?.itemName?.let { regex.replace(it, "").toInt() }
         Intent(context, BusArrivalActivity::class.java).apply {
-            putExtra("stationID", p1?.itemName?.takeLast(9))
+            putExtra("stationID", stationID.toString())
         }.run { context.startActivity(this) }
-        Log.e("test", p1!!.itemName)
     }
 
     override fun onDraggablePOIItemMoved(p0: MapView?, p1: MapPOIItem?, p2: MapPoint?) {

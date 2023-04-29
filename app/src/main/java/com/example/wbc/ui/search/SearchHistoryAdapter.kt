@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wbc.ItemClickListener
+import com.example.wbc.listener.SearchHistoryClickListener
 import com.example.wbc.databinding.ItemHistoryBinding
 import com.example.wbc.data.entity.SearchHistoryEntity
 
-class SearchHistoryAdapter(private val listener: ItemClickListener) : ListAdapter<SearchHistoryEntity, SearchHistoryAdapter.MyViewHolder>(diffUtil) {
+class SearchHistoryAdapter(private val listener: SearchHistoryClickListener) : ListAdapter<SearchHistoryEntity, SearchHistoryAdapter.MyViewHolder>(diffUtil) {
 
-    class MyViewHolder(private val binding: ItemHistoryBinding, private val listener: ItemClickListener) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemHistoryBinding, private val listener: SearchHistoryClickListener) : RecyclerView.ViewHolder(binding.root) {
         val root = binding.root
         fun bind(item: SearchHistoryEntity) {
             binding.data = item

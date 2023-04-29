@@ -38,7 +38,7 @@ class MapActivity() : AppCompatActivity() {
     private val mapView by lazy {
         MapView(this)
     }
-    private val marker = MapPOIItem()
+
     private val permissionList = arrayOf(
         android.Manifest.permission.ACCESS_COARSE_LOCATION,
         android.Manifest.permission.ACCESS_FINE_LOCATION,
@@ -64,16 +64,19 @@ class MapActivity() : AppCompatActivity() {
         mapViewContainer.addView(mapView)
         mapView.setPOIItemEventListener(eventListener)
 
-        // 현재 위치
-        getMyLocation()
+        val intent = intent.getStringExtra("address")
 
-        // 현재 위치 근방의 버스 정류소 출력
-        mapViewModel.getBusStationInfo(latitude, longitude)
+        /**
+         * SearchFragment에서 넘어온 값이 있으면 해당 값 위치 검색, 주변 버스 정류장 출력
+         * 값이 없으면 현재 내 위치와 내 위치 주변 버스 정류장 출력
+         */
 
-        // Search Fragment에서 넘어온 값 처리
-        intent.getStringExtra("address")?.let {
-            mapViewModel.searchLocation(it, latitude, longitude)
-//            setMarker(latitude, longitude, it, null)
+        if (intent != null) {
+            mapViewModel.searchLocation(intent, latitude, longitude)
+            setMarker(latitude, longitude, intent)
+        } else {
+            getMyLocation()
+            mapViewModel.getBusStationInfo(latitude, longitude)
         }
 
         // 현재 위치로 이동 버튼
@@ -95,12 +98,11 @@ class MapActivity() : AppCompatActivity() {
             if (it.documents.isEmpty()) {
                 Toast.makeText(this, "5km 근방에 찾으신 시설이 없습니다.", Toast.LENGTH_SHORT).show()
             } else {
-//                setMarker(
-//                    it.documents[0].y.toDouble(),
-//                    it.documents[0].x.toDouble(),
-//                    it.documents[0].place_name,
-//                    null
-//                )
+                setMarker(
+                    it.documents[0].y.toDouble(),
+                    it.documents[0].x.toDouble(),
+                    it.documents[0].place_name,
+                )
                 mapViewModel.getBusStationInfo(
                     it.documents[0].y.toDouble(),
                     it.documents[0].x.toDouble()
@@ -113,7 +115,7 @@ class MapActivity() : AppCompatActivity() {
                 Toast.makeText(this, "근처에 버스 정류장이 없습니다.", Toast.LENGTH_SHORT).show()
             } else {
                 for (i in it.body?.items?.item!!) {
-                    setMarker(i.gpsLati!!, i.gpsLong!!, i.nodeNm!!, i.nodeId!!.substring(3))
+                    setBusStopMarker(i.gpsLati!!, i.gpsLong!!, i.nodeNm!!, i.nodeId!!.substring(3))
                 }
             }
         })
@@ -126,18 +128,15 @@ class MapActivity() : AppCompatActivity() {
 
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
 
-//        setMarker(latitude, longitude, "현재 위치", null)
+        setMarker(latitude, longitude, "현재 위치")
     }
 
     // 지도에 마커 생성
-    private fun setMarker(latitude: Double, longitude: Double, title: String, stationID: String?) {
+    private fun setMarker(latitude: Double, longitude: Double, title: String) {
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
+        val marker = MapPOIItem()
         marker.apply {
-            if (stationID != null) {
-                itemName = "$title / $stationID"
-            } else {
-                itemName = title
-            }
+            itemName = title
             mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude)
             markerType = MapPOIItem.MarkerType.BluePin
             selectedMarkerType = MapPOIItem.MarkerType.RedPin
@@ -145,24 +144,25 @@ class MapActivity() : AppCompatActivity() {
         mapView.addPOIItem(marker)
     }
 
-//    private fun setBusStopMarker(
-//        latitude: Double,
-//        longitude: Double,
-//        title: String,
-//        stationID: String
-//    ) {
-////        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
-//        marker.apply {
-//            itemName = "$title / $stationID"
-//            isShowCalloutBalloonOnTouch
-//            mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude)
-//            markerType = MapPOIItem.MarkerType.CustomImage
-//            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
-//            customImageResourceId = R.drawable.icon_bus
-//            customSelectedImageResourceId = R.drawable.icon_bus
-//            isCustomImageAutoscale = false
-//            setCustomImageAnchor(0.5f, 1.0f)
-//        }
-//        mapView.addPOIItem(marker)
-//    }
+    private fun setBusStopMarker(
+        latitude: Double,
+        longitude: Double,
+        title: String,
+        stationID: String
+    ) {
+        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
+        val marker = MapPOIItem()
+        marker.apply {
+            itemName = "$title / $stationID"
+            isShowCalloutBalloonOnTouch
+            mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude)
+            markerType = MapPOIItem.MarkerType.CustomImage
+            selectedMarkerType = MapPOIItem.MarkerType.CustomImage
+            customImageResourceId = R.drawable.icon_bus
+            customSelectedImageResourceId = R.drawable.icon_bus
+            isCustomImageAutoscale = false
+            setCustomImageAnchor(0.5f, 1.0f)
+        }
+        mapView.addPOIItem(marker)
+    }
 }
