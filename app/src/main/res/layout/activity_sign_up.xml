@@ -11,12 +11,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/edit_id"
+        app:layout_constraintBottom_toTopOf="@+id/edit_create_id"
         android:src="@drawable/basic_profile"
         />
 
     <EditText
-        android:id="@+id/edit_id"
+        android:id="@+id/edit_create_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/image_add_profile"
@@ -30,10 +30,10 @@
 
 
     <EditText
-        android:id="@+id/edit_pw"
+        android:id="@+id/edit_create_pw1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_id"
+        app:layout_constraintTop_toBottomOf="@id/edit_create_id"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="15dp"
@@ -42,10 +42,10 @@
         android:hint="비밀번호" />
 
     <EditText
-        android:id="@+id/edit_pw2"
+        android:id="@+id/edit_create_pw2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_pw"
+        app:layout_constraintTop_toBottomOf="@id/edit_create_pw1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="15dp"
@@ -57,7 +57,7 @@
         android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/edit_pw2"
+        app:layout_constraintTop_toBottomOf="@+id/edit_create_pw2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="25dp"

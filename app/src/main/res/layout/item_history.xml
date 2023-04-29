@@ -36,7 +36,7 @@
             app:layout_constraintStart_toEndOf="@+id/tv_history"
             app:layout_constraintBottom_toBottomOf="@+id/tv_history"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/baseline_cancel_24" />
+            android:src="@drawable/cancel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

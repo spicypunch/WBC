@@ -1,4 +1,4 @@
-package com.example.wbc
+package com.example.wbc.ui.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
