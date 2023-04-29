@@ -6,17 +6,18 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.wbc.listener.AddBookmarkClickListener
+import com.example.wbc.listener.BookmarkClickListener
 import com.example.wbc.data.entity.BusInfoEntity
 import com.example.wbc.databinding.ActivityBusArrivalBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BusArrivalActivity : AppCompatActivity(), AddBookmarkClickListener {
+class BusArrivalActivity : AppCompatActivity(), BookmarkClickListener {
 
     private lateinit var binding: ActivityBusArrivalBinding
     private val busArrivalViewModel: BusArrivalViewModel by viewModels()
     private val adapter by lazy { BusArrivalAdapter(this) }
+    private lateinit var stationID: String
     private var busList = mutableListOf<BusInfoEntity>()
     private var map = mutableMapOf<String, String>()
     private var cnt = 0
@@ -29,23 +30,16 @@ class BusArrivalActivity : AppCompatActivity(), AddBookmarkClickListener {
         binding.recyclerviewBusArrival.adapter = adapter
         binding.recyclerviewBusArrival.layoutManager = LinearLayoutManager(this)
 
-        val stationID = intent.getStringExtra("stationID")
-        if (stationID != null) {
-            busArrivalViewModel.getBusArrivalTime(stationID)
-        }
 
-        binding.fabRefresh.setOnClickListener {
-            busList.clear()
-            cnt = 0
-            busArrivalViewModel.getBusArrivalTime(stationID!!)
-        }
 
         /**
-         * 정류장 ID를 이용해 해당 정류장에 도착 예정인 버스의 목록을 조회한다.
-         * 버스 도착 예정 API의 특징으론 응답 내용에 버스의 번호가 포함이 안 된다.
+         * 정류장 ID(stationID)를 이용해 해당 정류장에 도착 예정인 버스의 목록을 조회한다.
+         * 버스 도착 예정 시간을 조회하는 API의 응답 내용에는 버스의 번호가 포함이 안 된다.
          * 버스의 번호 대신 해당 버스가 가진 고유 routeId를 가지기 때문에 routeId로 버스 정보 조회 API 요청을 한다.
          * 그리고 일단 routeID와 도착예정시간1, 도착예정시간2를 BusInfoEntity에 저장해준다.
          */
+        stationID = intent.getStringExtra("stationID").toString()
+        busArrivalViewModel.getBusArrivalTime(stationID)
         busArrivalViewModel.busArrivalTimeResult.observe(this, Observer {
             if (it.body?.busArrivalList == null) {
                 Toast.makeText(this, "도착 예정 버스가 없습니다.", Toast.LENGTH_SHORT).show()
@@ -75,6 +69,21 @@ class BusArrivalActivity : AppCompatActivity(), AddBookmarkClickListener {
                 replaceBusName()
             }
         })
+
+        busArrivalViewModel.insertResult.observe(this, Observer {
+            if (it == false) {
+                Toast.makeText(this, "즐겨찾기 추가에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "즐겨찾기 추가에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+
+            }
+        })
+
+        binding.fabRefresh.setOnClickListener {
+            busList.clear()
+            cnt = 0
+            busArrivalViewModel.getBusArrivalTime(stationID)
+        }
     }
 
     /**
@@ -88,6 +97,7 @@ class BusArrivalActivity : AppCompatActivity(), AddBookmarkClickListener {
         adapter.submitList(busList)
     }
     override fun onClick(item: BusInfoEntity) {
-
+        // map에 저장해두었던 routeID를 가져온다.
+        busArrivalViewModel.insertMyBookmark(stationID, map.filterValues { it == item.busNum }.keys.first(), item.busNum)
     }
 }

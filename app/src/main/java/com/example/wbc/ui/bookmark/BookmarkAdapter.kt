@@ -1,30 +1,30 @@
-package com.example.wbc.ui.bus_info
+package com.example.wbc.ui.bookmark
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wbc.listener.BookmarkClickListener
 import com.example.wbc.data.entity.BusInfoEntity
-import com.example.wbc.databinding.ItemBusArrivalBinding
+import com.example.wbc.databinding.ItemBookmarkBinding
+import com.example.wbc.listener.BookmarkClickListener
 
-class BusArrivalAdapter(private val listener: BookmarkClickListener) : ListAdapter<BusInfoEntity, BusArrivalAdapter.MyViewHolder>(diffUtil){
+class BookmarkAdapter(private val listener: BookmarkClickListener) : ListAdapter<BusInfoEntity, BookmarkAdapter.MyViewHolder>(diffUtil){
 
-    class MyViewHolder(private val binding: ItemBusArrivalBinding, private val listener: BookmarkClickListener) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(private val binding: ItemBookmarkBinding, private val listener: BookmarkClickListener) : RecyclerView.ViewHolder(binding.root) {
         val root = binding.root
 
         fun bind(item: BusInfoEntity) {
             binding.data = item
 
-            binding.imageBookmark.setOnClickListener {
+            binding.imageDelete.setOnClickListener {
                 listener.onClick(item)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding: ItemBusArrivalBinding = ItemBusArrivalBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ItemBookmarkBinding = ItemBookmarkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding, listener)
     }
 

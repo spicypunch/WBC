@@ -1,5 +1,6 @@
-package com.example.wbc.ui.login.login
+package com.example.wbc.ui.main
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,18 +11,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val firebaseRepository: FirebaseRepositoryImpl
-    ) : ViewModel() {
+) : ViewModel() {
 
-    private var _success = MutableLiveData<Boolean>()
-    val success: LiveData<Boolean>
-        get() = _success
+    private var _uri = MutableLiveData<Uri>()
+    val uri: LiveData<Uri>
+        get() = _uri
 
-        fun signIn(email: String, passwd: String) {
-            viewModelScope.launch {
-                _success.value = firebaseRepository.signIn(email, passwd)
-            }
+    fun getProfileImage() {
+        viewModelScope.launch {
+            _uri.value = firebaseRepository.getProfileImage()
         }
+    }
 
 }
