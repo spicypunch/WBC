@@ -1,7 +1,6 @@
 package com.example.wbc.repository.firebase
 
 import android.net.Uri
-import android.util.Log
 import com.example.wbc.data.entity.BookmarkEntity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -64,7 +63,11 @@ class FirebaseRepositoryImpl @Inject constructor(
         routeNm: String
     ): Boolean {
         return try {
-            val bookmarkEntity = BookmarkEntity(stationID, routeID, routeNm)
+            val bookmarkEntity = BookmarkEntity(
+                stationID = stationID,
+                routeID = routeID,
+                routeNm = routeNm
+            )
             auth.currentUser?.let {
                 db.collection(it.uid)
                     .document(dateFormat.format(currentTime))
@@ -83,5 +86,24 @@ class FirebaseRepositoryImpl @Inject constructor(
                     .await()
             }
         return dbResult!!
+    }
+
+    override suspend fun deleteBookmart(busNm: String): Boolean {
+        return try {
+            val dbResult = auth.currentUser?.let {
+                db.collection(it.uid)
+                    .whereEqualTo("routeNm", busNm)
+                    .get()
+                    .await()
+            }
+            if (dbResult != null) {
+                for (result in dbResult) {
+                    result.reference.delete()
+                }
+            }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 }

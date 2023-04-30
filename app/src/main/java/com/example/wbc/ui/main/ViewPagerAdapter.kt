@@ -17,5 +17,8 @@ class ViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activi
 
     override fun createFragment(position: Int): Fragment = fragments[position]
 
-
+//    fun refreshFragment(index: Int, fragment: Fragment) {
+//        fragments[index] = fragment
+//        notifyItemChanged(index)
+//    }
 }

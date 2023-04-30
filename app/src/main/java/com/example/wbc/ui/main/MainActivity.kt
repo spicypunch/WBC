@@ -67,6 +67,9 @@ class MainActivity : AppCompatActivity() {
             mainViewModel.getProfileImage()
         }
 
+//        val newFragment = SearchFragment()
+//        viewPagerAdapter.refreshFragment(0, newFragment)
+
         mainViewModel.uri.observe(this, Observer {
             if (it != null) {
                 Glide.with(this).load(it).circleCrop().into(binding.imageProfile)

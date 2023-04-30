@@ -64,16 +64,16 @@ class MapActivity() : AppCompatActivity() {
         mapViewContainer.addView(mapView)
         mapView.setPOIItemEventListener(eventListener)
 
-        val intent = intent.getStringExtra("address")
+
 
         /**
          * SearchFragment에서 넘어온 값이 있으면 해당 값 위치 검색, 주변 버스 정류장 출력
          * 값이 없으면 현재 내 위치와 내 위치 주변 버스 정류장 출력
          */
-
-        if (intent != null) {
-            mapViewModel.searchLocation(intent, latitude, longitude)
-            setMarker(latitude, longitude, intent)
+        val address = intent.getStringExtra("address")
+        if (address != null) {
+            getMyLocation()
+            mapViewModel.searchLocation(address, latitude, longitude)
         } else {
             getMyLocation()
             mapViewModel.getBusStationInfo(latitude, longitude)
