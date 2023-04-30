@@ -41,7 +41,6 @@ class BookmarkFragment() : Fragment(), BookmarkClickListener {
         bookmarkViewModel.getMyBookmark()
 
         bookmarkViewModel.busArrivalTimeResult.observe(viewLifecycleOwner, Observer {
-            Log.e("list", it.toString())
             adapter.submitList(it)
         })
 
@@ -57,7 +56,9 @@ class BookmarkFragment() : Fragment(), BookmarkClickListener {
         return binding.root
     }
 
-    override fun onClick(item: BusInfoEntity) {
-        bookmarkViewModel.deleteBookmark(item.busNum)
+    override fun onClick(item: BusInfoEntity?) {
+        if (item != null) {
+            bookmarkViewModel.deleteBookmark(item.busNum)
+        }
     }
 }

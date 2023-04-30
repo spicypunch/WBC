@@ -4,5 +4,5 @@ import com.example.wbc.data.entity.BusInfoEntity
 
 interface BookmarkClickListener {
 
-    fun onClick(item: BusInfoEntity)
+    fun onClick(item: BusInfoEntity?)
 }
