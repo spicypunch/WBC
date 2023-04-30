@@ -40,20 +40,14 @@ WBC는 When is the bus coming의 약자로 버스가 언제 도착하는지 확�
 - 현재 로그인이 되어있지 않아 로그인을 진행해주세요 라는 Toast 메시지가 나옵니다. 
 
 #### 계정 생성 및 로그인
-![Screen_Recording_20230430_205555_ _1](https://user-images.githubusercontent.com/72846127/235352134-8b159454-2fed-4f1a-adf4-1267996fe4a8.gif)
-
-![Screen_Recording_20230430_205555_ _2](https://user-images.githubusercontent.com/72846127/235352137-6786924a-86dd-4d36-87a0-c5e81f338c99.gif)
-
-![Screen_Recording_20230430_205555_ _3](https://user-images.githubusercontent.com/72846127/235352138-e75cf307-e685-4eda-b8d4-238718a1dd6e.gif)
+![Screen_Recording_20230430_205555_ _1](https://user-images.githubusercontent.com/72846127/235352134-8b159454-2fed-4f1a-adf4-1267996fe4a8.gif) ![Screen_Recording_20230430_205555_ _2](https://user-images.githubusercontent.com/72846127/235352137-6786924a-86dd-4d36-87a0-c5e81f338c99.gif) ![Screen_Recording_20230430_205555_ _3](https://user-images.githubusercontent.com/72846127/235352138-e75cf307-e685-4eda-b8d4-238718a1dd6e.gif)
 
 - 프로필 사진을 등록할 수 있지만 원치 않으면 등록하지 않아도 됩니다. 카메라와 내부 스토리지를 통해 이미지를 가져옵니다.
 - 이메일이 중복되었는지, 기입한 비밀번호가 일치하지 않은지 검사 후 회원 가입을 진행합니다. 
 - 생성한 계정을 통해 로그인을 진행하고 프로필 사진에 방금 등록한 사진이 나오는 걸 확인할 수 있습니다.
 
 #### 원하는 버스 추가
-![Screen_Recording_20230430_205821_ _1](https://user-images.githubusercontent.com/72846127/235352141-73dc1d22-b882-45d7-a8dc-8f0e1ac16ad2.gif)
-
-![Screen_Recording_20230430_205821_ _2](https://user-images.githubusercontent.com/72846127/235352142-e9c4dd88-2034-440d-b2b4-cb7df8621b16.gif)
+![Screen_Recording_20230430_205821_ _1](https://user-images.githubusercontent.com/72846127/235352141-73dc1d22-b882-45d7-a8dc-8f0e1ac16ad2.gif) ![Screen_Recording_20230430_205821_ _2](https://user-images.githubusercontent.com/72846127/235352142-e9c4dd88-2034-440d-b2b4-cb7df8621b16.gif)
 
 - 검색 기록을 통해 다시 한번 전에 확인했던 정류소의 버스 도착 목록 화면에 들어갑니다.
 - 원하는 버스를 즐겨찾기에 추가합니다.
