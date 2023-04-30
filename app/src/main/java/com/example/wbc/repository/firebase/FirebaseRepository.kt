@@ -17,4 +17,6 @@ interface FirebaseRepository {
 
     suspend fun getMyBookmark(): QuerySnapshot
 
+    suspend fun deleteBookmart(busNm: String): Boolean
+
 }

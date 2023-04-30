@@ -30,8 +30,6 @@ class BusArrivalActivity : AppCompatActivity(), BookmarkClickListener {
         binding.recyclerviewBusArrival.adapter = adapter
         binding.recyclerviewBusArrival.layoutManager = LinearLayoutManager(this)
 
-
-
         /**
          * 정류장 ID(stationID)를 이용해 해당 정류장에 도착 예정인 버스의 목록을 조회한다.
          * 버스 도착 예정 시간을 조회하는 API의 응답 내용에는 버스의 번호가 포함이 안 된다.
