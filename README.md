@@ -8,6 +8,27 @@ WBC는 When is the bus coming의 약자로 버스가 언제 도착하는지 확�
 <br>
 <br>
 
+### 순서도
+----------
+#### 로그인 / 회원가입 / 즐겨찾기 추가
+![image](https://user-images.githubusercontent.com/72846127/235492675-2e5012cc-2ee6-4a2a-b343-d33b645b7f11.png)
+
+<br>
+
+#### 검색어 저장 및 삭제
+![image](https://user-images.githubusercontent.com/72846127/235492755-b777da3d-1d03-4de3-bee4-46231b22f8e9.png)
+
+<br>
+
+#### 카카오맵 키워드 검색 / 버스 정보
+![image](https://user-images.githubusercontent.com/72846127/235492887-9554650d-d7d3-4e8c-baf8-db95258de1b7.png)
+
+
+
+<br>
+<br>
+<br>
+
 ### 주요 기술
 ---------
 - Retrofit을 통한 카카오맵 API와 버스 정류소 현황 API, 버스 도착 정보 API를 사용하였습니다.
