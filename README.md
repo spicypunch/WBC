@@ -20,6 +20,7 @@ WBC는 When is the bus coming의 약자로 버스가 언제 도착하는지 확�
 - Hilt를 통해 의존성을 주입하였습니다.
 - Coroutine을 이용해 비동기 처리를 하였습니다.
 - TabLayout으로 프래그먼트를 쉽게 다루고 ViewPager2로 스와이프를 통해 화면 이동을 지원합니다.
+- Firebase를 통해 즐겨찾기에 추가한 버스 정보를 저장합니다.
 - Glide로 이미지 관련 작업을 처리하였습니다.
 - Kakaomap을 사용하여 지도를 구성하였습니다.
 <br>
