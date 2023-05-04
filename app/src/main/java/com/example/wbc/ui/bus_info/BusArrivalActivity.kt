@@ -94,8 +94,12 @@ class BusArrivalActivity : AppCompatActivity(), BookmarkClickListener {
         }
         adapter.submitList(busList)
     }
-    override fun onClick(item: BusInfoEntity) {
-        // map에 저장해두었던 routeID를 가져온다.
-        busArrivalViewModel.insertMyBookmark(stationID, map.filterValues { it == item.busNum }.keys.first(), item.busNum)
+    override fun onClick(item: BusInfoEntity?) {
+        if (item == null) {
+            Toast.makeText(this, "로그인을 진행해주세요.", Toast.LENGTH_SHORT).show()
+        } else {
+            // map에 저장해두었던 routeID를 가져온다.
+            busArrivalViewModel.insertMyBookmark(stationID, map.filterValues { it == item.busNum }.keys.first(), item.busNum)
+        }
     }
 }
