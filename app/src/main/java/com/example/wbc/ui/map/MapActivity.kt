@@ -133,7 +133,6 @@ class MapActivity() : AppCompatActivity() {
 
     // 지도에 마커 생성
     private fun setMarker(latitude: Double, longitude: Double, title: String) {
-        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
         val marker = MapPOIItem()
         marker.apply {
             itemName = title

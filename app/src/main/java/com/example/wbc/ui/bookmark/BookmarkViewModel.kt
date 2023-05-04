@@ -24,8 +24,8 @@ class BookmarkViewModel @Inject constructor(
     private val busArrivalList: MutableList<BusArrivalResponse> = mutableListOf()
     private val busInfoList: MutableList<BusInfoEntity> = mutableListOf()
 
-    private val _busArrivalTimeResult = MutableLiveData<MutableList<BusInfoEntity>>()
-    val busArrivalTimeResult: LiveData<MutableList<BusInfoEntity>>
+    private val _busArrivalTimeResult = MutableLiveData<List<BusInfoEntity>>()
+    val busArrivalTimeResult: LiveData<List<BusInfoEntity>>
         get() = _busArrivalTimeResult
 
     private val _deleteResult = MutableLiveData<Boolean>()
@@ -80,6 +80,6 @@ class BookmarkViewModel @Inject constructor(
                 }
             }
         }
-        _busArrivalTimeResult.value = busInfoList
+        _busArrivalTimeResult.value = busInfoList.distinct()
     }
 }

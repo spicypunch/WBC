@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.example.wbc.R
 import com.example.wbc.databinding.ActivityMainBinding
 import com.example.wbc.ui.bookmark.BookmarkFragment
 import com.example.wbc.ui.login.login.LoginActivity
@@ -57,7 +58,6 @@ class MainActivity : AppCompatActivity() {
             } else {
                 loginDialog()
             }
-
         }
     }
 
@@ -66,9 +66,6 @@ class MainActivity : AppCompatActivity() {
         if (auth.currentUser != null) {
             mainViewModel.getProfileImage()
         }
-
-//        val newFragment = SearchFragment()
-//        viewPagerAdapter.refreshFragment(0, newFragment)
 
         mainViewModel.uri.observe(this, Observer {
             if (it != null) {
@@ -86,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             setPositiveButton("네", object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface?, which: Int) {
                     auth.signOut()
+                    setBasicImage()
                 }
             })
             show()
@@ -107,5 +105,9 @@ class MainActivity : AppCompatActivity() {
             })
             show()
         }
+    }
+
+    private fun setBasicImage() {
+        Glide.with(this).load(R.drawable.basic_profile).circleCrop().into(binding.imageProfile)
     }
 }
