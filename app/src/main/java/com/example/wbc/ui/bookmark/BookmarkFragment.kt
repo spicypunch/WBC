@@ -13,10 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wbc.data.entity.BusInfoEntity
 import com.example.wbc.databinding.FragmentBookmarkBinding
 import com.example.wbc.listener.BookmarkClickListener
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class BookmarkFragment() : Fragment(), BookmarkClickListener {
+
+    @Inject
+    lateinit var auth: FirebaseAuth
 
     private lateinit var binding: FragmentBookmarkBinding
 
@@ -28,17 +33,21 @@ class BookmarkFragment() : Fragment(), BookmarkClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBookmarkBinding.inflate(inflater, container, false)
 
         binding.recyclerviewBookmark.adapter = adapter
         binding.recyclerviewBookmark.layoutManager = LinearLayoutManager(activity)
 
-        binding.fabBookmarkRefresh.setOnClickListener {
+        if (auth.currentUser == null) {
+            Toast.makeText(context, "로그인을 진행해주세요.", Toast.LENGTH_SHORT).show()
+        } else {
             bookmarkViewModel.getMyBookmark()
         }
 
-        bookmarkViewModel.getMyBookmark()
+        binding.fabBookmarkRefresh.setOnClickListener {
+            bookmarkViewModel.getMyBookmark()
+        }
 
         bookmarkViewModel.busArrivalTimeResult.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
