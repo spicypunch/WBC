@@ -45,7 +45,7 @@ class BusArrivalAdapter(private val listener: BookmarkClickListener
         val diffUtil = object : DiffUtil.ItemCallback<BusInfoEntity>() {
 
             override fun areItemsTheSame(oldItem: BusInfoEntity, newItem: BusInfoEntity): Boolean {
-                return oldItem.busNum == newItem.busNum
+                return (oldItem.busNum == newItem.busNum || oldItem.predictTime1 == newItem.predictTime1 || oldItem.predictTime2 == newItem.predictTime2)
             }
 
             override fun areContentsTheSame(oldItem: BusInfoEntity, newItem: BusInfoEntity): Boolean {
