@@ -13,8 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class BusArrivalAdapter(private val listener: BookmarkClickListener
-) : ListAdapter<BusInfoEntity, BusArrivalAdapter.MyViewHolder>(diffUtil){
+class BusArrivalAdapter(private val listener: BookmarkClickListener): ListAdapter<BusInfoEntity, BusArrivalAdapter.MyViewHolder>(diffUtil){
 
     class MyViewHolder(private val binding: ItemBusArrivalBinding, private val listener: BookmarkClickListener) : RecyclerView.ViewHolder(binding.root) {
         val root = binding.root

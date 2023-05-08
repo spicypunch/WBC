@@ -95,6 +95,7 @@ class BusArrivalActivity : AppCompatActivity(), BookmarkClickListener {
         busList.forEach {
             it.busNum = map[it.busNum]!!
         }
+        Log.e("tag", busList.toString())
         adapter.submitList(busList)
     }
     override fun onClick(item: BusInfoEntity?) {

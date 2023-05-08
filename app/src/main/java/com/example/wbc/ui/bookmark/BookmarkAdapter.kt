@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wbc.data.entity.BusInfoEntity
 import com.example.wbc.databinding.ItemBookmarkBinding
 import com.example.wbc.listener.BookmarkClickListener
+import com.google.firebase.auth.FirebaseAuth
 
 class BookmarkAdapter(private val listener: BookmarkClickListener) : ListAdapter<BusInfoEntity, BookmarkAdapter.MyViewHolder>(diffUtil){
 
@@ -18,6 +19,9 @@ class BookmarkAdapter(private val listener: BookmarkClickListener) : ListAdapter
             binding.data = item
 
             binding.imageDelete.setOnClickListener {
+                if (FirebaseAuth.getInstance().currentUser == null) {
+                    listener.onClick(null)
+                }
                 listener.onClick(item)
             }
         }

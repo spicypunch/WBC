@@ -46,8 +46,12 @@ class BookmarkFragment() : Fragment(), BookmarkClickListener {
         }
 
         binding.fabBookmarkRefresh.setOnClickListener {
-            bookmarkViewModel.getMyBookmark()
-            Toast.makeText(context, "새로고침 하였습니다.", Toast.LENGTH_SHORT).show()
+            if (auth.currentUser == null) {
+                Toast.makeText(context, "로그인을 진행해주세요.", Toast.LENGTH_SHORT).show()
+            } else {
+                bookmarkViewModel.getMyBookmark()
+                Toast.makeText(context, "새로고침 하였습니다.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         bookmarkViewModel.busArrivalTimeResult.observe(viewLifecycleOwner, Observer {
