@@ -83,6 +83,7 @@ class BusArrivalActivity : AppCompatActivity(), BookmarkClickListener {
             busList.clear()
             cnt = 0
             busArrivalViewModel.getBusArrivalTime(stationID)
+            Toast.makeText(this, "새로고침 하였습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 

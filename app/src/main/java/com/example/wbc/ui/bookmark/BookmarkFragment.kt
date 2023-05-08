@@ -47,6 +47,7 @@ class BookmarkFragment() : Fragment(), BookmarkClickListener {
 
         binding.fabBookmarkRefresh.setOnClickListener {
             bookmarkViewModel.getMyBookmark()
+            Toast.makeText(context, "새로고침 하였습니다.", Toast.LENGTH_SHORT).show()
         }
 
         bookmarkViewModel.busArrivalTimeResult.observe(viewLifecycleOwner, Observer {
