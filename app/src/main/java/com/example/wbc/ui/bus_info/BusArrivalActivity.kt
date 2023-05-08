@@ -38,6 +38,7 @@ class BusArrivalActivity : AppCompatActivity(), BookmarkClickListener {
          */
         stationID = intent.getStringExtra("stationID").toString()
         busArrivalViewModel.getBusArrivalTime(stationID)
+
         busArrivalViewModel.busArrivalTimeResult.observe(this, Observer {
             if (it.body?.busArrivalList == null) {
                 Toast.makeText(this, "도착 예정 버스가 없습니다.", Toast.LENGTH_SHORT).show()
