@@ -8,14 +8,14 @@ plugins {
 }
 
 android {
-    namespace 'com.example.wbc'
+    namespace 'com.jm.wbc'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.wbc"
+        applicationId "com.jm.wbc"
         minSdk 26
         targetSdk 33
-        versionCode 1
+        versionCode 2
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

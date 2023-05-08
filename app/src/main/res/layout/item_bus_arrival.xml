@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.wbc.data.entity.BusInfoEntity" />
+            type="com.jm.wbc.data.entity.BusInfoEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
