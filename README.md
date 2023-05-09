@@ -93,9 +93,6 @@ WBC는 When is the bus coming의 약자로 버스가 언제 도착하는지 확�
 - 비로그인 상태에서 즐겨찾기 페이지로 접근 시 NPE으로 앱이 종료되는 현상 발생
 - 로그인 여부 검사 후 로그인이 안 되어있는 경우에 로그인을 하라는 Toast 메시지 추가
 
-![Screen_Recording_20230508_165423_ _2](https://user-images.githubusercontent.com/72846127/236789982-60b49320-2bed-4763-9a1a-1f5f9070da18.gif)
-- 로그인을 할 경우 기존과 마찬가지로 내가 즐겨찾기에 추가한 버스 정보 확인 가능
-
 ![Screen_Recording_20230508_165647_ _1](https://user-images.githubusercontent.com/72846127/236789983-bae071fc-7890-425a-bcc7-cd7d547e9c01.gif)
 - 새로고침 버튼을 눌렀을 경우 버스 도착 정보 갱신
 
