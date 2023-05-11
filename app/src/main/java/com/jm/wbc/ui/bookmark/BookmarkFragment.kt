@@ -55,7 +55,11 @@ class BookmarkFragment() : Fragment(), BookmarkClickListener {
         }
 
         bookmarkViewModel.busArrivalTimeResult.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            if (it == null) {
+                Toast.makeText(context, "운행중인 버스가 없습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                adapter.submitList(it)
+            }
         })
 
         bookmarkViewModel.deleteResult.observe(viewLifecycleOwner, Observer {
