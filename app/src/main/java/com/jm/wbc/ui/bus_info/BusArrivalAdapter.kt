@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.jm.wbc.listener.BookmarkClickListener
 import com.jm.wbc.databinding.ItemBusArrivalBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.jm.wbc.R
 import com.jm.wbc.data.entity.BusInfoEntity
 
 class BusArrivalAdapter(private val listener: BookmarkClickListener): ListAdapter<BusInfoEntity, BusArrivalAdapter.MyViewHolder>(diffUtil){
@@ -23,6 +25,7 @@ class BusArrivalAdapter(private val listener: BookmarkClickListener): ListAdapte
                    listener.onClick(null)
                }
                 listener.onClick(item)
+                Glide.with(binding.root).load(R.drawable.bookmark_complete).into(binding.imageBookmark)
             }
         }
     }

@@ -103,3 +103,11 @@ WBC는 When is the bus coming의 약자로 버스가 언제 도착하는지 확�
 ![Screen_Recording_20230508_183500_ _1](https://user-images.githubusercontent.com/72846127/236791203-3cf259d6-6a47-4f84-a9db-bacbec0e5753.gif)
 - 삭제 이미지를 눌렀을 경우 데이터 삭제
 
+<br>
+
+#### 버스 정보 
+![Screen_Recording_20230516_151714_ _1](https://github.com/spicypunch/WBC/assets/72846127/0c4543d4-23fc-4ada-9f2e-986c2ab79a72)
+- 즐겨찾기 버튼을 눌렀을 경우 이미지 변경
+
+
+
