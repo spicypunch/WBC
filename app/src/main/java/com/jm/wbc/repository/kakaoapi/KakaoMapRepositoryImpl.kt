@@ -14,11 +14,11 @@ class KakaoMapRepositoryImpl @Inject constructor(
         longitude: Double
     ): KakaoResponse {
         return kakaoService.searchPlace(
-                address,
-                5000,
-                latitude,
-                longitude,
-                "KakaoAK adbab23df5d7301de7db6ce10d19ff10"
-            ).await()
+            address,
+            5000,
+            latitude,
+            longitude,
+            "KakaoAK adbab23df5d7301de7db6ce10d19ff10"
+        )
     }
 }

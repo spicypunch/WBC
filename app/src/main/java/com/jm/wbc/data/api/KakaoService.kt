@@ -8,11 +8,11 @@ import retrofit2.http.Query
 
 interface KakaoService {
     @GET("/v2/local/search/keyword.json")
-    fun searchPlace(
+    suspend fun searchPlace(
         @Query("query") query: String,
         @Query("radius") radius: Int,
         @Query("y") y: Double,
         @Query("x") x: Double,
         @Header("Authorization") Authorization: String
-    ): Call<KakaoResponse>
+    ): KakaoResponse
 }

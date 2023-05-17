@@ -10,21 +10,21 @@ import retrofit2.http.Query
 interface BusService {
 
     @GET("/1613000/BusSttnInfoInqireService/getCrdntPrxmtSttnList")
-    fun getBusStationInfo(
+    suspend fun getBusStationInfo(
         @Query("serviceKey") serviceKey: String,
         @Query("gpsLati") gpsLati: Double,
         @Query("gpsLong") gpsLong: Double
-    ): Call<BusStationResponse>
+    ): BusStationResponse
 
     @GET("/6410000/busarrivalservice/getBusArrivalList")
-    fun getBusArrivalTime(
+    suspend fun getBusArrivalTime(
         @Query("serviceKey") serviceKey: String,
         @Query("stationId") stationId: String
-    ): Call<BusArrivalResponse>
+    ): BusArrivalResponse
 
     @GET("/6410000/busrouteservice/getBusRouteInfoItem")
-    fun getBusName(
+    suspend fun getBusName(
         @Query("serviceKey") serviceKey: String,
         @Query("routeId") routeId: Int
-    ): Call<BusInfoResponse>
+    ): BusInfoResponse
 }
