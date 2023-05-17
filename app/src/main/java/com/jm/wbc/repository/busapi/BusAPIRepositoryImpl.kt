@@ -16,23 +16,23 @@ class BusAPIRepositoryImpl @Inject constructor(
         longitude: Double
     ): BusStationResponse {
         return busService.getBusStationInfo(
-                "Ly2IHtl1aGXioF/sk3QPO8m0vKzS0zMpHGsaq3gfvRWJ7wHg1Pim+YJW7mchXjPxvt/s1BHsszlod8Qqv8CVVA==",
-                latitude,
-                longitude
-            ).await()
+            "Ly2IHtl1aGXioF/sk3QPO8m0vKzS0zMpHGsaq3gfvRWJ7wHg1Pim+YJW7mchXjPxvt/s1BHsszlod8Qqv8CVVA==",
+            latitude,
+            longitude
+        )
     }
 
     override suspend fun getBusArrivalTime(stationId: String): BusArrivalResponse {
         return busService.getBusArrivalTime(
             "Ly2IHtl1aGXioF/sk3QPO8m0vKzS0zMpHGsaq3gfvRWJ7wHg1Pim+YJW7mchXjPxvt/s1BHsszlod8Qqv8CVVA==",
             stationId
-        ).await()
+        )
     }
 
     override suspend fun getBusName(routeId: Int): BusInfoResponse {
         return busService.getBusName(
             "Ly2IHtl1aGXioF/sk3QPO8m0vKzS0zMpHGsaq3gfvRWJ7wHg1Pim+YJW7mchXjPxvt/s1BHsszlod8Qqv8CVVA==",
             routeId
-        ).await()
+        )
     }
 }
