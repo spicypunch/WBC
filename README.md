@@ -36,7 +36,7 @@ WBC는 When is the bus coming의 약자로 버스가 언제 도착하는지 확�
 - MVVM 패턴으로 작성되었습니다.
   - LiveData를 이용해 데이터가 변경될 때 뷰에 알립니다.
   - AAC ViewModel를 이용해 데이터를 보존합니다.
-  - Databindig을 이용해 xml 파일을 선언적으로 데이터와 뷰를 바인딩합니다.
+  - Databindig을 이용해 선언적으로 데이터와 뷰를 바인딩합니다.
 - Repository Pattern을 통해 로컬 데이터베이스와 원격 서버에서 데이터를 가져오는 방식을 추상화 하여 가독성과 유지보수성을 높였습니다.
 - Hilt를 통해 의존성을 주입하였습니다.
 - Coroutine을 이용해 비동기 처리를 하였습니다.
