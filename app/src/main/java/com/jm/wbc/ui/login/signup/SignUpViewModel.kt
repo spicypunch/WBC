@@ -1,6 +1,7 @@
 package com.jm.wbc.ui.login.signup
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,13 +26,21 @@ class SignUpViewModel @Inject constructor(
 
     fun createAccount(email: String, passwd: String) {
         viewModelScope.launch {
-            _createSuccess.value = firebaseRepository.createAccount(email, passwd)
+            try {
+                _createSuccess.value = firebaseRepository.createAccount(email, passwd)
+            } catch (e: Exception) {
+                Log.e("CreateAccountErr", e.toString())
+            }
         }
     }
 
     fun uploadProfileImage(uri: Uri) {
         viewModelScope.launch {
-            _imageUploadSuccess.value = firebaseRepository.uploadProfileImage(uri)
+            try {
+                _imageUploadSuccess.value = firebaseRepository.uploadProfileImage(uri)
+            } catch (e: Exception) {
+                Log.e("UploadProfileErr", e.toString())
+            }
         }
     }
 }

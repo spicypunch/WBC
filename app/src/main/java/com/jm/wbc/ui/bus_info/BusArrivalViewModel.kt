@@ -1,5 +1,6 @@
 package com.jm.wbc.ui.bus_info
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,19 +33,31 @@ class BusArrivalViewModel @Inject constructor(
 
     fun getBusArrivalTime(stationId: String) {
         viewModelScope.launch {
-            _busArrivalTimeResult.value = busAPIRepository.getBusArrivalTime(stationId)
+            try {
+                _busArrivalTimeResult.value = busAPIRepository.getBusArrivalTime(stationId)
+            } catch (e: Exception) {
+                Log.e("GetBusArrivalTimeErr", e.toString())
+            }
         }
     }
 
     fun getBusName(routeId: Int) {
         viewModelScope.launch {
-            _busName.value = busAPIRepository.getBusName(routeId)
+            try {
+                _busName.value = busAPIRepository.getBusName(routeId)
+            } catch (e: Exception) {
+                Log.e("GetBusNameErr", e.toString())
+            }
         }
     }
 
     fun insertMyBookmark(stationID: String, routeID: String, routeNm: String) {
         viewModelScope.launch {
-            _insertResult.value = firebaseRepository.insertMyBookmark(stationID, routeID, routeNm)
+            try {
+                _insertResult.value = firebaseRepository.insertMyBookmark(stationID, routeID, routeNm)
+            } catch (e: Exception) {
+                Log.e("InsertBookmarkErr", e.toString())
+            }
         }
     }
 }

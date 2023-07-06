@@ -4,7 +4,6 @@ import com.jm.wbc.data.api.BusService
 import com.jm.wbc.data.entity.BusArrivalResponse
 import com.jm.wbc.data.entity.BusInfoResponse
 import com.jm.wbc.data.entity.BusStationResponse
-import retrofit2.*
 import javax.inject.Inject
 
 class BusAPIRepositoryImpl @Inject constructor(

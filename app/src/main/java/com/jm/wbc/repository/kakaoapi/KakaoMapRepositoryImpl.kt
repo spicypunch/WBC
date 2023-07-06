@@ -2,7 +2,6 @@ package com.jm.wbc.repository.kakaoapi
 
 import com.jm.wbc.data.api.KakaoService
 import com.jm.wbc.data.entity.KakaoResponse
-import retrofit2.*
 import javax.inject.Inject
 
 class KakaoMapRepositoryImpl @Inject constructor(

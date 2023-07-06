@@ -1,5 +1,6 @@
 package com.jm.wbc.ui.search
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,26 +34,34 @@ class SearchViewModel @Inject constructor(
 
     fun insertHistory(searchHistory: String) {
         viewModelScope.launch {
-            roomRepository.insertHistory(
-                SearchHistoryEntity(
-                    null,
-                    searchHistory
+            try {
+                roomRepository.insertHistory(SearchHistoryEntity(null, searchHistory)
                 )
-            )
+            } catch (e: Exception) {
+                Log.e("InsertHistoryErr", e.toString())
+            }
         }
     }
 
     fun deleteHistory(item: SearchHistoryEntity) {
         viewModelScope.launch {
-            roomRepository.deleteHistory(item)
+            try {
+                roomRepository.deleteHistory(item)
+                _toastMessage.value = "검색 기록이 삭제되었습니다."
+            } catch (e: Exception) {
+                Log.e("DeleteHistoryErr", e.toString())
+            }
         }
-        _toastMessage.value = "검색 기록이 삭제되었습니다."
     }
 
     fun deleteAllHistory() {
         viewModelScope.launch {
-            roomRepository.deleteAllHistory()
+            try {
+                roomRepository.deleteAllHistory()
+                _toastMessage.value = "검색 기록이 전부 삭제되었습니다."
+            } catch (e: Exception) {
+                Log.e("DeleteAllHistoryErr", e.toString())
+            }
         }
-        _toastMessage.value = "검색 기록이 전부 삭제되었습니다."
     }
 }

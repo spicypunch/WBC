@@ -1,6 +1,7 @@
 package com.jm.wbc.ui.main
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,7 +22,11 @@ class MainViewModel @Inject constructor(
 
     fun getProfileImage() {
         viewModelScope.launch {
-            _uri.value = firebaseRepository.getProfileImage()
+            try {
+                _uri.value = firebaseRepository.getProfileImage()
+            } catch (e: Exception) {
+                Log.e("GetProfileImage", e.toString())
+            }
         }
     }
 

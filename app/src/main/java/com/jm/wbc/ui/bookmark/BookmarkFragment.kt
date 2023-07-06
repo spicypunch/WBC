@@ -1,7 +1,6 @@
 package com.jm.wbc.ui.bookmark
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jm.wbc.databinding.FragmentBookmarkBinding
-import com.jm.wbc.listener.BookmarkClickListener
 import com.google.firebase.auth.FirebaseAuth
 import com.jm.wbc.data.entity.BusInfoEntity
+import com.jm.wbc.databinding.FragmentBookmarkBinding
+import com.jm.wbc.listener.BookmarkClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

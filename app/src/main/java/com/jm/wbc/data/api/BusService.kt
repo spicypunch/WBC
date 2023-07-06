@@ -3,7 +3,6 @@ package com.jm.wbc.data.api
 import com.jm.wbc.data.entity.BusArrivalResponse
 import com.jm.wbc.data.entity.BusInfoResponse
 import com.jm.wbc.data.entity.BusStationResponse
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
