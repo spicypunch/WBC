@@ -1,5 +1,6 @@
 package com.jm.wbc.ui.login.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +21,11 @@ class LoginViewModel @Inject constructor(
 
         fun signIn(email: String, passwd: String) {
             viewModelScope.launch {
-                _success.value = firebaseRepository.signIn(email, passwd)
+                try {
+                    _success.value = firebaseRepository.signIn(email, passwd)
+                } catch (e: Exception) {
+                    Log.e("SignInErr", e.toString())
+                }
             }
         }
 

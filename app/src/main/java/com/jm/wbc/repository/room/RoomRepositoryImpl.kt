@@ -1,7 +1,7 @@
 package com.jm.wbc.repository.room
 
-import com.jm.wbc.di.coroutine.IoDispatcher
 import com.jm.wbc.data.entity.SearchHistoryEntity
+import com.jm.wbc.di.coroutine.IoDispatcher
 import com.jm.wbc.room.SearchHistoryDao
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

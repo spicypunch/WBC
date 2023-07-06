@@ -1,5 +1,6 @@
 package com.jm.wbc.ui.bookmark
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +12,7 @@ import com.jm.wbc.repository.busapi.BusAPIRepositoryImpl
 import com.jm.wbc.repository.firebase.FirebaseRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,31 +35,42 @@ class BookmarkViewModel @Inject constructor(
 
     fun getMyBookmark() {
         viewModelScope.launch {
-            firebaseList.clear()
-            val results = firebaseRepository.getMyBookmark()
-            for (result in results) {
-                val item = result.toObject(BookmarkEntity::class.java)
-                firebaseList.add(item)
+            try {
+                firebaseList.clear()
+                val results = firebaseRepository.getMyBookmark()
+                for (result in results) {
+                    val item = result.toObject(BookmarkEntity::class.java)
+                    firebaseList.add(item)
+                }
+                getBusArrivalTime()
+            } catch (e: Exception) {
+                Log.e("GetMyBookmarkErr", e.toString())
             }
-            getBusArrivalTime()
         }
     }
 
     fun deleteBookmark(busNm: String) {
         viewModelScope.launch {
-            _deleteResult.value = firebaseRepository.deleteBookmart(busNm)
+            try {
+                _deleteResult.value = firebaseRepository.deleteBookmart(busNm)
+            } catch (e: Exception) {
+                Log.e("DeleteBookmarkErr", e.toString())
+            }
         }
     }
 
     private fun getBusArrivalTime() {
         viewModelScope.launch {
-            busArrivalList.clear()
-            for (i in firebaseList) {
-                busArrivalList.add(busAPIRepository.getBusArrivalTime(i.stationID))
+            try {
+                busArrivalList.clear()
+                for (i in firebaseList) {
+                    busArrivalList.add(busAPIRepository.getBusArrivalTime(i.stationID))
+                }
+                filterBookmarkBus()
+            } catch (e: Exception) {
+                Log.e("GetBusArrivalTimeErr", e.toString())
             }
-            filterBookmarkBus()
         }
-
     }
 
     /**

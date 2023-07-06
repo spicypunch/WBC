@@ -1,5 +1,6 @@
 package com.jm.wbc.ui.map
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,13 +29,21 @@ class MapViewModel @Inject constructor(
 
     fun searchLocation(address: String, latitude: Double, longitude: Double) {
         viewModelScope.launch {
-            _searchResult.value = kakaoMapRepository.searchLocation(address, latitude, longitude)
+            try {
+                _searchResult.value = kakaoMapRepository.searchLocation(address, latitude, longitude)
+            } catch (e: Exception) {
+                Log.e("SearchLocationErr", e.toString())
+            }
         }
     }
 
     fun getBusStationInfo(latitude: Double, longitude: Double) {
         viewModelScope.launch {
-            _busStationResult.value = busAPIRepository.getBusStationInfo(latitude, longitude)
+            try {
+                _busStationResult.value = busAPIRepository.getBusStationInfo(latitude, longitude)
+            } catch (e: Exception) {
+                Log.e("GetBusStationInfoErr", e.toString())
+            }
         }
     }
 }
