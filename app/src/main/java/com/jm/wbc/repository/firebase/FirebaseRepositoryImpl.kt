@@ -88,7 +88,7 @@ class FirebaseRepositoryImpl @Inject constructor(
         return dbResult!!
     }
 
-    override suspend fun deleteBookmart(busNm: String): Boolean {
+    override suspend fun deleteBookmark(busNm: String): Boolean {
         return try {
             val dbResult = auth.currentUser?.let {
                 db.collection(it.uid)
