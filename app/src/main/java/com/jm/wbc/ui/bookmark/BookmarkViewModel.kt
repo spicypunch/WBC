@@ -52,7 +52,7 @@ class BookmarkViewModel @Inject constructor(
     fun deleteBookmark(busNm: String) {
         viewModelScope.launch {
             try {
-                _deleteResult.value = firebaseRepository.deleteBookmart(busNm)
+                _deleteResult.value = firebaseRepository.deleteBookmark(busNm)
             } catch (e: Exception) {
                 Log.e("DeleteBookmarkErr", e.toString())
             }
