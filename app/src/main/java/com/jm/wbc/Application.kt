@@ -1,4 +1,4 @@
-package com.jm.wbc.di
+package com.jm.wbc
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
